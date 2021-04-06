@@ -4,7 +4,10 @@ import 'package:patient_app/Doctor.dart';
 import 'package:patient_app/Patient.dart';
 import 'package:patient_app/Pharmacie.dart';
 import 'package:patient_app/Analyse.dart';
+import 'package:patient_app/Scan_generate_QR/Generate.dart';
 import 'package:patient_app/X-ray.dart';
+
+import 'Scan_generate_QR/Scan.dart';
 
 
 void main() => runApp(MyApp());
@@ -95,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new Doctor()));
+                                builder: (BuildContext context) => new ScanPage()));
                       },
                     ),
                   ),
@@ -115,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new Patient()));
+                                builder: (BuildContext context) => new GeneratePage()));
                       },
                     ),
                   ),

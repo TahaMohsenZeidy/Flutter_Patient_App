@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   lottie: ^1.0.1
+  qr_flutter: ^3.2.0
+  qrscan: ^0.2.22
 
 
   # The following adds the Cupertino Icons font to your application.
