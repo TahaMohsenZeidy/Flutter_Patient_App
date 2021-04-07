@@ -2,6 +2,7 @@ import 'package:easy_gradient_text/easy_gradient_text.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_app/screens/home_screen.dart';
 import 'package:patient_app/widgets/curve_clipper.dart';
+import '../signups/sign_up_doctor.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -113,7 +114,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => SignUp(),
+                      ),
+                    ),
                     child: Container(
                       alignment: Alignment.center,
                       color: Theme.of(context).primaryColor,

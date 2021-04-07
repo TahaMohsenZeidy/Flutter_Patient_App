@@ -2,10 +2,10 @@ import 'package:easy_gradient_text/easy_gradient_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:patient_app/Pharmacie.dart';
-import 'package:patient_app/Scan_generate_QR/Generate.dart';
-import 'package:patient_app/Doctor_Package/oldLogin.dart';
-import 'package:patient_app/loginNew.dart';
+import 'package:patient_app/pharmacie.dart';
+import 'logins/log_in_doctor.dart';
+import 'patient.dart';
+import 'x_ray.dart';
 
 
 void main() => runApp(MyApp());
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               child: Lottie.asset(
                 'assets/doctor-welcoming-patient.json',
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 4.0,
+                height: MediaQuery.of(context).size.height / 2.8,
               ),
             ),
             new Container(
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new LoginNew()));
+                                builder: (BuildContext context) => new LogInDoctor()));
                       },
                     ),
                   ),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new GeneratePage()));
+                                builder: (BuildContext context) => new Patient()));
                       },
                     ),
                   ),
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new LoginDoctor()));
+                                builder: (BuildContext context) => new Xray()));
                       },
                     ),
                   ),
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
               fontWeight: FontWeight.w100,
               fontSize: 10,
               letterSpacing: 2,
-            ),
+              ),
             ),
           ],
         ),

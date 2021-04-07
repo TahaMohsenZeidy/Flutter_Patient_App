@@ -6,7 +6,7 @@ class Patient extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text('hedhy khedmet Adel'),
+        child: Text('hedhy khedmet Meriam'),
       ),
     );
   }

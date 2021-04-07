@@ -58,12 +58,12 @@ class _HomeScreenState extends State<HomeScreen>
       drawer: CustomDrawer(),
       body: ListView(
         children: <Widget>[
-          FollowingUsers(),
-          PostsCarousel(
-            pageController: _pageController,
-            title: 'Posts',
-            posts: posts,
-          ),
+          //FollowingUsers(),
+          // PostsCarousel(
+          //   pageController: _pageController,
+          //   title: 'Posts',
+          //   posts: posts,
+          // ),
         ],
       ),
     );
