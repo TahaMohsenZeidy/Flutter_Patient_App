@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:patient_app/Doctor.dart';
@@ -5,7 +6,9 @@ import 'package:patient_app/Patient.dart';
 import 'package:patient_app/Pharmacie.dart';
 import 'package:patient_app/Analyse.dart';
 import 'package:patient_app/Scan_generate_QR/Generate.dart';
+import 'package:patient_app/Doctor_Package/loginDoctor.dart';
 import 'package:patient_app/X-ray.dart';
+import 'package:patient_app/loginNew.dart';
 
 import 'Scan_generate_QR/Scan.dart';
 
@@ -44,15 +47,15 @@ class _HomePageState extends State<HomePage> {
         child: new Column(
           children: [
             new Container(
-              margin: new EdgeInsets.symmetric(vertical: 25.0),
+              margin: new EdgeInsets.symmetric(vertical: 40.0),
               child: Text(
-                "Welcome To HOSPY",
+                "HOSPY",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                 fontFamily: 'Aleo',
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
+                  fontSize: 35.0,
                     color: Colors.white
                 ),
               ),
@@ -61,27 +64,12 @@ class _HomePageState extends State<HomePage> {
               child: Lottie.asset(
                 'assets/doctor-welcoming-patient.json',
                 width: MediaQuery.of(context).size.width,
-                height: 140,
+                height: 160,
               ),
             ),
             new Container(
               child: new Column(
                 children: [
-                  new Container(
-                    margin: new EdgeInsets.symmetric(vertical: 15.0),
-                    child: Text(
-                      "You Are",
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          fontFamily: 'Aleo',
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30.0,
-                          color: Colors.white
-
-                      ),
-                    ),
-                  ),
                   new Container(
                     child: ElevatedButton(
                       child: Text(
@@ -91,14 +79,14 @@ class _HomePageState extends State<HomePage> {
                             fontFamily: 'Aleo',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.white),
                       ),
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new ScanPage()));
+                                builder: (BuildContext context) => new LoginNew()));
                       },
                     ),
                   ),
@@ -111,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                             fontFamily: 'Aleo',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.white),
                       ),
                       onPressed: () {
@@ -125,40 +113,20 @@ class _HomePageState extends State<HomePage> {
                   new Container(
                     child: ElevatedButton(
                       child: Text(
-                        'Analyser',
+                        'Tester',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: 'Aleo',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.white),
                       ),
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => new Analyse()));
-                      },
-                    ),
-                  ),
-                  new Container(
-                    child: ElevatedButton(
-                      child: Text(
-                        'X-Ray Taker',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Aleo',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                            color: Colors.white),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => new Xray()));
+                                builder: (BuildContext context) => new LoginDoctor()));
                       },
                     ),
                   ),
@@ -171,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                             fontFamily: 'Aleo',
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.white),
                       ),
                       onPressed: () {
@@ -184,6 +152,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            ),
+            Text("All Rights Reserved ENIS 2021/2022",
+            style: TextStyle(
+              fontWeight: FontWeight.w100,
+              letterSpacing: 2,
+            ),
             ),
           ],
         ),
