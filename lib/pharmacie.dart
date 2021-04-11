@@ -6,7 +6,7 @@ class Pharmacie extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: Text('hedhy khedmett ayoub'),
+        child: Text('this is the pharmacist dashboard'),
       ),
     );
   }

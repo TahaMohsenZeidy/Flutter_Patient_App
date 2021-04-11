@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen>
           color: Theme.of(context).primaryColor,
         ),
         title: Text(
-          'FRENZY',
+          'Doctor',
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.bold,
@@ -50,8 +50,9 @@ class _HomeScreenState extends State<HomeScreen>
             fontSize: 18.0,
           ),
           tabs: <Widget>[
-            Tab(text: 'Trending'),
-            Tab(text: 'Latest'),
+            Tab(text: 'Patients'),
+            Tab(text: 'Scans'),
+            //Tab(text: 'Medicines'),
           ],
         ),
       ),

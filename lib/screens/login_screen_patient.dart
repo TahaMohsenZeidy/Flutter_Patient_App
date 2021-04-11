@@ -4,12 +4,12 @@ import 'package:patient_app/screens/home_screen.dart';
 import 'package:patient_app/widgets/curve_clipper.dart';
 import '../signups/sign_up_doctor.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreenPatient extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreenPatient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Image(
                   height: MediaQuery.of(context).size.height / 2.8,
                   width: double.infinity,
-                  image: AssetImage('assets/doctors.jpg'),
+                  image: AssetImage('assets/patients.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),

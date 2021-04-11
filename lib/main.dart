@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:patient_app/pharmacie.dart';
-import 'logins/log_in_doctor.dart';
-import 'patient.dart';
-import 'x_ray.dart';
+import 'package:patient_app/screens/login_screen.dart';
+import 'package:patient_app/screens/login_screen_patient.dart';
+import 'Scan_generate_QR/Generate.dart';
+import 'Scan_generate_QR/Scan.dart';
 
 
 void main() => runApp(MyApp());
@@ -39,128 +40,130 @@ class _HomePageState extends State<HomePage> {
             Colors.lightBlueAccent,
           ],
         )),
-        child: new Column(
-          children: [
-            new Container(
-              margin: new EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height / 12),
-              child: GradientText(
-                text:"HOSPY",
-                colors: <Color>[
-                  Colors.cyanAccent,
-                  Colors.white60,
-                  Colors.cyanAccent,
-                ],
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                fontFamily: 'Aleo',
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 50.0,
+        child: SingleChildScrollView(
+          child: new Column(
+            children: [
+              new Container(
+                margin: new EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height / 12),
+                child: GradientText(
+                  text:"HOSPY",
+                  colors: <Color>[
+                    Colors.cyanAccent,
+                    Colors.white60,
+                    Colors.cyanAccent,
+                  ],
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                  fontFamily: 'Aleo',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50.0,
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              child: Lottie.asset(
-                'assets/doctor-welcoming-patient.json',
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.8,
+              new Container(
+                child: Lottie.asset(
+                  'assets/doctor-welcoming-patient.json',
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 2.8,
+                ),
               ),
-            ),
-            new Container(
-              child: new Column(
-                children: [
-                  new Container(
-                    child: ElevatedButton(
-                      child: Text(
-                        'Doctor',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Aleo',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.white),
+              new Container(
+                child: new Column(
+                  children: [
+                    new Container(
+                      child: ElevatedButton(
+                        child: Text(
+                          'Doctor',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => new LoginScreen()));
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => new LogInDoctor()));
-                      },
                     ),
-                  ),
-                  new Container(
-                    child: ElevatedButton(
-                      child: Text(
-                        'Patient',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Aleo',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.white),
+                    new Container(
+                      child: ElevatedButton(
+                        child: Text(
+                          'Patient',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => new LoginScreenPatient()));
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => new Patient()));
-                      },
                     ),
-                  ),
-                  new Container(
-                    child: ElevatedButton(
-                      child: Text(
-                        'Tester',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Aleo',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.white),
+                    new Container(
+                      child: ElevatedButton(
+                        child: Text(
+                          'Tester',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => new ScanPage()));
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => new Xray()));
-                      },
                     ),
-                  ),
-                  new Container(
-                    child: ElevatedButton(
-                      child: Text(
-                        'Pharmasist',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Aleo',
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0,
-                            color: Colors.white),
+                    new Container(
+                      child: ElevatedButton(
+                        child: Text(
+                          'Pharmasist',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                              color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => new GeneratePage()));
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => new Pharmacie()));
-                      },
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-            ),
-            Text("All Rights Reserved ENIS 2021/2022",
-            style: TextStyle(
-              fontWeight: FontWeight.w100,
-              fontSize: 10,
-              letterSpacing: 2,
+              Text("All Rights Reserved ENIS 2021/2022",
+              style: TextStyle(
+                fontWeight: FontWeight.w100,
+                fontSize: 10,
+                letterSpacing: 2,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
