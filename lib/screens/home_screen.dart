@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/data/data.dart';
 import 'package:patient_app/widgets/custom_drawer.dart';
-import 'package:patient_app/widgets/following_users.dart';
-import 'package:patient_app/widgets/posts_carousel.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override

@@ -66,9 +66,9 @@ final _yourFavorites = [_post0, _post2, _post4];
 
 // Current User
 final User currentUser = User(
-  profileImageUrl: 'assets/user.jpg',
+  profileImageUrl: 'assets/user0.jpg',
   backgroundImageUrl: 'assets/user_background.jpg',
-  name: 'Rebecca',
+  name: 'Taha',
   following: 453,
   followers: 937,
   posts: _yourPosts,

@@ -2,7 +2,6 @@ import 'package:easy_gradient_text/easy_gradient_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:patient_app/pharmacie.dart';
 import 'package:patient_app/screens/login_screen.dart';
 import 'package:patient_app/screens/login_screen_patient.dart';
 import 'Scan_generate_QR/Generate.dart';

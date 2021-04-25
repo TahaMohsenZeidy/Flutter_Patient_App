@@ -1,8 +1,8 @@
 import 'package:easy_gradient_text/easy_gradient_text.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_app/screens/home_screen.dart';
 import 'package:patient_app/widgets/curve_clipper.dart';
 import '../signups/sign_up_doctor.dart';
+import 'appointmentScreen/appointmentScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => HomeScreen(),
+                    builder: (_) => AppointmentScreen(),
                   ),
                 ),
                 child: Container(
