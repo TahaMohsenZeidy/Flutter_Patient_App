@@ -6,6 +6,7 @@ import 'package:patient_app/screens/login_screen.dart';
 import 'package:patient_app/screens/login_screen_patient.dart';
 import 'Scan_generate_QR/Generate.dart';
 import 'Scan_generate_QR/Scan.dart';
+// ya rabi sahel fal projet.
 
 
 void main() => runApp(MyApp());
