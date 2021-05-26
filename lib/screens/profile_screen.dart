@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/models/user_model.dart';
 import 'package:patient_app/widgets/custom_drawer.dart';
-import 'package:patient_app/widgets/posts_carousel.dart';
 import 'package:patient_app/widgets/profile_clipper.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -107,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(height: 2.0),
                     Text(
-                      widget.user.following.toString(),
+                      "Hello",
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600,
@@ -126,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(height: 2.0),
                     Text(
-                      widget.user.followers.toString(),
+                      "Hello",
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600,
@@ -135,16 +134,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ],
-            ),
-            PostsCarousel(
-              pageController: _yourPostsPageController,
-              title: 'Your Posts',
-              posts: widget.user.posts,
-            ),
-            PostsCarousel(
-              pageController: _favoritesPageController,
-              title: 'Favorites',
-              posts: widget.user.favorites,
             ),
             SizedBox(height: 50.0),
           ],

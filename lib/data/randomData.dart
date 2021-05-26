@@ -2,29 +2,16 @@
 List<String> mames = [
   'Taha',
   'Ayoub',
-  'Meriam',
-  'Safa',
-  'Houda',
-  'Ali'
-  'Salah',
+  'Fehmi',
 ];
 List<String> lastName = [
   'Zeidy',
   'Balti',
-  'Hamdani',
-  'Ben yela',
-  'Ben jaber',
-  'Ben arfa',
-  'Salhi',
+  'Ben Yala',
 ];
 
 List<String> comments = [
   'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
   'bbbbbbbbbbbbbbbbbbbbbbb',
   'ccccccccccccccccccccccccccccccccc',
-  'dddddddddddddddddddddddd',
-  'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-  'ffffffffffffffffffffffffffffffffffffffff',
-  'gggggggggggggggggggggggggggggggggggggg',
-  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.',
 ];
