@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:patient_app/clientAppointment.dart';
+import 'package:patient_app/screens/appointmentScreen/appointmentScreen.dart';
 import 'package:patient_app/screens/login_screen.dart';
 import 'package:patient_app/screens/login_screen_patient.dart';
+import 'package:patient_app/screens/profile_screen.dart';
 import 'Scan_generate_QR/Generate.dart';
 import 'Scan_generate_QR/Scan.dart';
 //
@@ -95,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new MakeAnAppointment()));
+                                      new AppointmentScreen()));
                           // LoginScreen
                         },
                       ),
@@ -117,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new LoginScreenPatient()));
+                                      new MakeAnAppointment()));
                         },
                       ),
                     ),
