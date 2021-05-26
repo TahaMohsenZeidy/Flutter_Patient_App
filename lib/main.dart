@@ -3,11 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:patient_app/clientAppointment.dart';
 import 'package:patient_app/screens/login_screen.dart';
 import 'package:patient_app/screens/login_screen_patient.dart';
 import 'Scan_generate_QR/Generate.dart';
 import 'Scan_generate_QR/Scan.dart';
-
 //
 // Future<void> main() async{
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -50,9 +50,10 @@ class _HomePageState extends State<HomePage> {
           child: new Column(
             children: [
               new Container(
-                margin: new EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height / 12),
+                margin: new EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height / 6.86),
                 child: GradientText(
-                  text:"HOSPY",
+                  text: "HOSPY",
                   colors: <Color>[
                     Colors.cyanAccent,
                     Colors.white60,
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                  fontFamily: 'Aleo',
+                    fontFamily: 'Aleo',
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
                     fontSize: 50.0,
@@ -93,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => new LoginScreen()));
+                                  builder: (BuildContext context) =>
+                                      new MakeAnAppointment()));
                           // LoginScreen
                         },
                       ),
@@ -114,7 +116,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => new LoginScreenPatient()));
+                                  builder: (BuildContext context) =>
+                                      new LoginScreenPatient()));
                         },
                       ),
                     ),
@@ -134,7 +137,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => new ScanPage()));
+                                  builder: (BuildContext context) =>
+                                      new ScanPage()));
                         },
                       ),
                     ),
@@ -154,7 +158,8 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) => new GeneratePage()));
+                                  builder: (BuildContext context) =>
+                                      new GeneratePage()));
                         },
                       ),
                     ),
@@ -162,11 +167,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
-              Text("All Rights Reserved ENIS 2021/2022",
-              style: TextStyle(
-                fontWeight: FontWeight.w100,
-                fontSize: 10,
-                letterSpacing: 2,
+              Text(
+                "All Rights Reserved ENIS 2021/2022",
+                style: TextStyle(
+                  fontWeight: FontWeight.w100,
+                  fontSize: 10,
+                  letterSpacing: 2,
                 ),
               ),
             ],
@@ -176,4 +182,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
