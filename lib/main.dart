@@ -1,4 +1,5 @@
 import 'package:easy_gradient_text/easy_gradient_text.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -6,10 +7,13 @@ import 'package:patient_app/screens/login_screen.dart';
 import 'package:patient_app/screens/login_screen_patient.dart';
 import 'Scan_generate_QR/Generate.dart';
 import 'Scan_generate_QR/Scan.dart';
-// ya rabi sahel fal projet.
 
 
-void main() => runApp(MyApp());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -88,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) => new LoginScreen()));
+                          // LoginScreen
                         },
                       ),
                     ),
