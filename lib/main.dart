@@ -17,7 +17,11 @@ import 'Scan_generate_QR/Scan.dart';
 //   runApp(MyApp());
 // }
 
-main() => runApp(MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

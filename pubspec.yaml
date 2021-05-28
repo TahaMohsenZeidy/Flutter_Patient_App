@@ -25,8 +25,9 @@ dependencies:
     sdk: flutter
   lottie: ^1.0.1
   # firebase
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.1
+  cloud_firestore: ^2.2.0
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
   qr_flutter: ^3.2.0
   qrscan: ^0.2.22
   easy_gradient_text: ^1.0.0
@@ -36,6 +37,7 @@ dependencies:
   flutter_staggered_animations: ^0.1.2
   cached_network_image: ^2.0.0-rc
   page_transition: "^1.1.5"
+  firebase_database: ^6.0.0
 
 
 
