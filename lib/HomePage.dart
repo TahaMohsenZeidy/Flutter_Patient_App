@@ -83,19 +83,20 @@ class _HomePageState extends State<HomePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-
                 ),
                 RaisedButton(
                   padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                  onPressed: ()=>{
+                  onPressed: () => {
                     // user.displayName == "Doctor"
-                    if(true){
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        // builder: (BuildContext context) => new EditProfile()))
-                        builder: (BuildContext context) => new SideBarLayout()))
-                    }
+                    if (true)
+                      {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                // builder: (BuildContext context) => new EditProfile()))
+                                builder: (BuildContext context) =>
+                                    new SideBarLayout()))
+                      }
                   },
                   child: Text('Continue',
                       style: TextStyle(
@@ -106,7 +107,6 @@ class _HomePageState extends State<HomePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-
                 )
               ],
             ),
