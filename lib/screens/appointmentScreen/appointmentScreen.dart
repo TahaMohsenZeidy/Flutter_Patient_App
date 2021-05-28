@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:patient_app/Logic/AppointmentManager.dart';
+import 'package:patient_app/bloc.navigation_bloc/navigation_bloc.dart';
 import 'dart:math';
 import 'package:patient_app/screens/appointmentDetailScreen/AppointmentDetailScreen.dart';
 import 'package:patient_app/widgets/appointmentWidgetComponents/AppointmentCard.dart';
@@ -10,7 +11,7 @@ import 'package:patient_app/widgets/appointmentWidgetComponents/SlidingCard.dart
 import 'package:patient_app/widgets/custom_drawer.dart';
 import '../../sizeConfig.dart';
 
-class AppointmentScreen extends StatefulWidget {
+class AppointmentScreen extends StatefulWidget with NavigationStates{
   @override
   _AppointmentScreenState createState() => _AppointmentScreenState();
 }
@@ -44,51 +45,40 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     }
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xffF3F6FF).withOpacity(0.134),
-      //   elevation: 0,
-      //   leading: Icon(
-      //     Icons.menu,
-      //     color: Colors.black54,
-      //     size: SizeConfig.horizontalBloc * 8,
-      //   ),
-      //   actions: <Widget>[
-      //     IconButton(
-      //       icon: Icon(
-      //         Icons.sync,
-      //         color: Colors.black54,
-      //         size: SizeConfig.horizontalBloc * 8,
-      //       ),
-      //       onPressed: () async {
-      //         setState(() {
-      //           isLoading = true;
-      //         });
-      //
-      //         topHeader..clear();
-      //         currentAppointment..clear();
-      //         midHeader..clear();
-      //         futureAppointment.clear();
-      //         finalList..clear();
-      //         AppointmentManager.appointmentList.clear();
-      //         //print(finalList.length);
-      //         AppointmentManager.generateAppointmentList();
-      //         initiateList();
-      //
-      //         Future.delayed(Duration(milliseconds: 375), () {
-      //           isLoading = false;
-      //           setState(() {});
-      //         });
-      //       },
-      //     )
-      //   ],
-      // ),
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text("back"),
+        backgroundColor: Color(0xffF3F6FF).withOpacity(0.134),
+        elevation: 0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.sync,
+              color: Colors.black54,
+              size: SizeConfig.horizontalBloc * 8,
+            ),
+            onPressed: () async {
+              setState(() {
+                isLoading = true;
+              });
+
+              topHeader..clear();
+              currentAppointment..clear();
+              midHeader..clear();
+              futureAppointment.clear();
+              finalList..clear();
+              AppointmentManager.appointmentList.clear();
+              //print(finalList.length);
+              AppointmentManager.generateAppointmentList();
+              initiateList();
+
+              Future.delayed(Duration(milliseconds: 375), () {
+                isLoading = false;
+                setState(() {});
+              });
+            },
+          )
+        ],
       ),
+
       drawer: CustomDrawer(),
       body: isLoading
           ? SizedBox()
