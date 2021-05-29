@@ -7,7 +7,7 @@ import '../new_patient.dart';
 
 enum NavigationEvents {
   HomePageClickedEvent,
-  NewPatientClickedEvent,
+  AddNewPatientClickedEvent,
   DashboardClickedEvent,
   ProfileScreenClickedEvent
 }
@@ -24,13 +24,10 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.HomePageClickedEvent:
         yield AppointmentScreen();
         break;
-      case NavigationEvents.DashboardClickedEvent:
-        yield HomePage1();
-        break;
-
-      case NavigationEvents.NewPatientClickedEvent:
+      case NavigationEvents.AddNewPatientClickedEvent:
         yield NewPatient();
         break;
+
       case NavigationEvents.ProfileScreenClickedEvent:
         yield ProfileScreen();
         break;

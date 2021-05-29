@@ -44,19 +44,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 300.0,
                     width: double.infinity,
                     image: AssetImage(
-                      'assets/user1.jpg'
+                      'assets/doctors.jpg'
                     ),
                     fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  top: 50.0,
-                  left: 20.0,
-                  child: IconButton(
-                    icon: Icon(Icons.menu),
-                    iconSize: 30.0,
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () => _scaffoldKey.currentState.openDrawer(),
                   ),
                 ),
                 Positioned(
@@ -77,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 120.0,
                         width: 120.0,
                         image: AssetImage(
-                          'assets/user1.jpg'
+                          'assets/user0.jpg'
                         ),
                         fit: BoxFit.cover,
                       ),

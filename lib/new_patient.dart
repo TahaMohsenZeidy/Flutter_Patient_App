@@ -104,10 +104,9 @@ class NewPatientState extends State<NewPatient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add patient")),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(24),
+          margin: const EdgeInsets.only(left: 40.0, top: 70.0, right: 40.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -118,11 +117,12 @@ class NewPatientState extends State<NewPatient> {
                 _buildSymptoms(),
                 _buildMedicalTest(),
                 _buildMedecine(),
-                SizedBox(height: 100),
+                SizedBox(height: 60),
                 RaisedButton(
+                  color: Colors.blueAccent,
                   child: Text(
                     'Add New Patient',
-                    style: TextStyle(color: Colors.blue, fontSize: 16),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   onPressed: () {
                     if (!_formKey.currentState.validate()) {

@@ -68,12 +68,12 @@ class _SideBarState extends State<SideBar>
             children: <Widget>[
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   color: Colors.blueAccent,
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 80,
+                        height: 45,
                       ),
                       ListTile(
                         title: Text(
@@ -96,19 +96,19 @@ class _SideBarState extends State<SideBar>
                             Icons.perm_identity,
                             color: Colors.blueAccent,
                           ),
-                          radius: 40,
+                          radius: 50,
                         ),
                       ),
                       Divider(
-                        height: 64,
+                        height: 44,
                         thickness: 0.5,
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
                         endIndent: 32,
                       ),
                       MenuItem(
-                        icon: Icons.home,
-                        title: "Home",
+                        icon: Icons.meeting_room,
+                        title: "Appointments",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
@@ -116,26 +116,44 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
-                        icon: Icons.home,
-                        title: "Dashboard",
+                        icon: Icons.person_add_alt,
+                        title: "Add Patient",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.DashboardClickedEvent);
+                              .add(NavigationEvents.AddNewPatientClickedEvent);
                         },
                       ),
                       MenuItem(
-                        icon: Icons.person,
-                        title: "New Patient",
+                        icon: Icons.view_list,
+                        title: "Patients List",
                         onTap: () {
                           onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.NewPatientClickedEvent);
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.NewPatientClickedEvent);
                         },
                       ),
                       MenuItem(
-                        icon: Icons.shopping_basket,
-                        title: "Profil",
+                        icon: Icons.contacts,
+                        title: "Contact Analyser",
+                        onTap: () {
+                          onIconPressed();
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                        },
+                      ),
+                      MenuItem(
+                        icon: Icons.contact_phone,
+                        title: "Contact Pharmacist",
+                        onTap: () {
+                          // onIconPressed();
+                          // BlocProvider.of<NavigationBloc>(context)
+                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                        },
+                      ),
+                      MenuItem(
+                        icon: Icons.face,
+                        title: "Profile",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
@@ -143,7 +161,7 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       Divider(
-                        height: 64,
+                        height: 44,
                         thickness: 0.5,
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
