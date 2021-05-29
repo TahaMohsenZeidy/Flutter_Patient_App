@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:patient_app/models/user_model.dart';
 
+
+
+
 final users = [
   User(profileImageUrl: 'assets/user0.jpg'),
   User(profileImageUrl: 'assets/user1.jpg'),
@@ -19,3 +22,7 @@ class Data {
   Data(this.imgUrl, this.firstName, this.lastName, this.speciality,
       this.hospital, this.shortDesc, this.longDesc, this.availableTime);
 }
+
+
+
+

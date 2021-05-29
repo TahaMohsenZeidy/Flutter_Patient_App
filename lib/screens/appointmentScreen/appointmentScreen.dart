@@ -108,19 +108,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     );
   }
 
-  ///I use this function to make an aggragated list
-  ///this list will then be feeded into the listview"builder
-  ///IMPORTANT : Using this function i understood
-  ///that gicving keys to child widget is important if you are
-  ///panning on rebuilding them dynamically by adding custom parameters
   Future<bool> initiateList() async {
     //First we work on the header of the list
     topHeader.add(
       Padding(
-        padding: const EdgeInsets.only(left: 20.0, bottom: 9, top: 7),
+        padding: const EdgeInsets.only(left: 30.0, bottom: 1, top: 15),
         child: new Container(
           width: SizeConfig.safeBlockHorizontal * 90,
-          height: SizeConfig.verticalBloc * 3,
+          height: SizeConfig.verticalBloc * 6,
           //color: Colors.pink,
           child: Text(
             'Bienvenue !',
@@ -132,10 +127,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     );
     topHeader.add(
       Padding(
-        padding: const EdgeInsets.only(left: 20.0, bottom: 15),
+        padding: const EdgeInsets.only(left: 30.0, bottom: 1),
         child: new Container(
           width: SizeConfig.safeBlockHorizontal * 90,
-          height: SizeConfig.verticalBloc * 5,
+          height: SizeConfig.verticalBloc * 8,
           //color: Colors.pink,
           child: Text(
             'Dr. @Taha',

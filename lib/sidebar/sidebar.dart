@@ -129,8 +129,8 @@ class _SideBarState extends State<SideBar>
                         title: "Patients List",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.PatientListClickedEvent);
                         },
                       ),
                       MenuItem(

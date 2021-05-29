@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:patient_app/screens/appointmentScreen/appointmentScreen.dart';
 import 'package:patient_app/screens/profile_screen.dart';
-import '../hospital-dashboard-home.dart';
+import 'package:patient_app/screens/resto_home_screen.dart';
 import '../new_patient.dart';
 
 
 enum NavigationEvents {
   HomePageClickedEvent,
   AddNewPatientClickedEvent,
-  DashboardClickedEvent,
+  PatientListClickedEvent,
   ProfileScreenClickedEvent
 }
 
@@ -26,6 +26,10 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.AddNewPatientClickedEvent:
         yield NewPatient();
+        break;
+
+      case NavigationEvents.PatientListClickedEvent:
+        yield PatientsScreen();
         break;
 
       case NavigationEvents.ProfileScreenClickedEvent:

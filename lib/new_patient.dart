@@ -62,7 +62,7 @@ class NewPatientState extends State<NewPatient> {
         }
       },
       onSaved: (String value) {
-        _history = value;
+        _medecine = value;
       },
     );
   }
