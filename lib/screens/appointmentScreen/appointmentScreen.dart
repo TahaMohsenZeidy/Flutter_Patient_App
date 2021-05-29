@@ -5,10 +5,10 @@ import 'package:patient_app/Logic/AppointmentManager.dart';
 import 'package:patient_app/bloc.navigation_bloc/navigation_bloc.dart';
 import 'dart:math';
 import 'package:patient_app/screens/appointmentDetailScreen/AppointmentDetailScreen.dart';
+import 'package:patient_app/sidebar/sidebar.dart';
 import 'package:patient_app/widgets/appointmentWidgetComponents/AppointmentCard.dart';
 import 'package:patient_app/widgets/appointmentWidgetComponents/MiniAppointmentCard.dart';
 import 'package:patient_app/widgets/appointmentWidgetComponents/SlidingCard.dart';
-import 'package:patient_app/widgets/custom_drawer.dart';
 import '../../sizeConfig.dart';
 
 class AppointmentScreen extends StatefulWidget with NavigationStates{
@@ -79,7 +79,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         ],
       ),
 
-      drawer: CustomDrawer(),
+      drawer: SideBar(),
       body: isLoading
           ? SizedBox()
           : Container(

@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
-
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
 
@@ -35,6 +33,7 @@ class _SideBarState extends State<SideBar>
     _animationController.dispose();
     isSidebarOpenedStreamController.close();
     isSidebarOpenedSink.close();
+    isSidebarOpenedSink.close();
     super.dispose();
   }
 
@@ -61,20 +60,20 @@ class _SideBarState extends State<SideBar>
       builder: (context, isSideBarOpenedAsync) {
         return AnimatedPositioned(
           duration: _animationDuration,
-          top: 0,
+          top: -10,
           bottom: 0,
           left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
-          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 45,
+          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 35,
           child: Row(
             children: <Widget>[
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: const Color(0xFF00B0FF),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  color: Colors.blueAccent,
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 100,
+                        height: 80,
                       ),
                       ListTile(
                         title: Text(
@@ -85,16 +84,17 @@ class _SideBarState extends State<SideBar>
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "www.techieblossom.com",
+                          "SomeDesc",
                           style: TextStyle(
-                            color: Color(0xFF1BB5FD),
+                            color: Colors.white,
                             fontSize: 18,
                           ),
                         ),
                         leading: CircleAvatar(
+                          backgroundColor: Colors.white,
                           child: Icon(
                             Icons.perm_identity,
-                            color: Colors.white,
+                            color: Colors.blueAccent,
                           ),
                           radius: 40,
                         ),
@@ -166,14 +166,14 @@ class _SideBarState extends State<SideBar>
                   child: ClipPath(
                     clipper: CustomMenuClipper(),
                     child: Container(
-                      width: 35,
-                      height: 110,
-                      color: Color(0xFF262AAA),
+                      width: 40,
+                      height: 90,
+                      color: Colors.blueAccent,
                       alignment: Alignment.centerLeft,
                       child: AnimatedIcon(
                         progress: _animationController.view,
                         icon: AnimatedIcons.menu_close,
-                        color: Color(0xFF1BB5FD),
+                        color: Colors.white,
                         size: 25,
                       ),
                     ),

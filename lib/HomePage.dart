@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
 
   signOut() async {
     _auth.signOut();
-
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
   }

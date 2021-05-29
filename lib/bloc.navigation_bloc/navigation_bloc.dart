@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:patient_app/screens/appointmentScreen/appointmentScreen.dart';
-import '../Profile_doctor.dart';
+import 'package:patient_app/screens/profile_screen.dart';
 import '../hospital-dashboard-home.dart';
 import '../new_patient.dart';
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:patient_app/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:patient_app/models/user_model.dart';
-import 'package:patient_app/widgets/custom_drawer.dart';
+import 'package:patient_app/sidebar/sidebar.dart';
 import 'package:patient_app/widgets/profile_clipper.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget with NavigationStates{
   final User user;
 
   ProfileScreen({this.user});
@@ -30,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: CustomDrawer(),
+      drawer: SideBar(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -42,7 +43,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Image(
                     height: 300.0,
                     width: double.infinity,
-                    image: AssetImage(widget.user.backgroundImageUrl),
+                    image: AssetImage(
+                      'assets/user1.jpg'
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -73,7 +76,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Image(
                         height: 120.0,
                         width: 120.0,
-                        image: AssetImage(widget.user.profileImageUrl),
+                        image: AssetImage(
+                          'assets/user1.jpg'
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -84,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                widget.user.name,
+                "Taha",
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,

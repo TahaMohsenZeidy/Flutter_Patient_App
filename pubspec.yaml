@@ -40,7 +40,6 @@ dependencies:
   google_sign_in: ^4.5.9
   flutter_signin_button: ^1.0.0
   firebase: ^9.0.1
-  cloud_firestore: ^2.2.0
   flare_flutter: ^3.0.0
   flutter_bloc: ^7.0.0
   shared_preferences: ^2.0.6

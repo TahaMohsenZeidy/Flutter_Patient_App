@@ -1,10 +1,7 @@
 import 'package:easy_gradient_text/easy_gradient_text.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:patient_app/screens/login_screen.dart';
-import 'package:patient_app/screens/login_screen_patient.dart';
 import 'Scan_generate_QR/Generate.dart';
 import 'Scan_generate_QR/Scan.dart';
 
@@ -88,13 +85,13 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 18.0,
                               color: Colors.white),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => new LoginScreen()));
-                          // LoginScreen
-                        },
+                        // onPressed: () {
+                        //   Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (BuildContext context) => new LoginScreen()));
+                        //   // LoginScreen
+                        // },
                       ),
                     ),
                     new Container(
@@ -109,12 +106,12 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 18.0,
                               color: Colors.white),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => new LoginScreenPatient()));
-                        },
+                        // onPressed: () {
+                        //   Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (BuildContext context) => new LoginScreenPatient()));
+                        // },
                       ),
                     ),
                     new Container(
