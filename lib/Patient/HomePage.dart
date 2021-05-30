@@ -46,11 +46,6 @@ class _MyFirstPageState extends State<MyFirstPage> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  leading: Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                    size: 30,
-                  ),
                   actions: <Widget>[
                     Container(
                       height: 75,
@@ -83,7 +78,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Select a Doctor or Category",
+                        "Find Doctor or Category",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w700,
@@ -100,14 +95,21 @@ class _MyFirstPageState extends State<MyFirstPage> {
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
-                            categoryContainer("category7.png", "CT-Scan"),
-                            categoryContainer("category1.png", "Ortho"),
-                            categoryContainer("category2.png", "Dietician"),
-                            categoryContainer("category3.png", "Physician"),
-                            categoryContainer("category4.png", "Paralysis"),
-                            categoryContainer("category5.png", "Cardiology"),
-                            categoryContainer("category6.png", "MRI - Scan"),
-                            categoryContainer("category8.png", "Gynaecology"),
+                            categoryContainer(
+                                "assets/category7.png", "CT-Scan"),
+                            categoryContainer("assets/category1.png", "Ortho"),
+                            categoryContainer(
+                                "assets/category2.png", "Dietician"),
+                            categoryContainer(
+                                "assets/category3.png", "Physician"),
+                            categoryContainer(
+                                "assets/category4.png", "Paralysis"),
+                            categoryContainer(
+                                "assets/category5.png", "Cardiology"),
+                            categoryContainer(
+                                "assets/category6.png", "MRI - Scan"),
+                            categoryContainer(
+                                "assets/category8.png", "Gynaecology"),
                           ],
                         ),
                       ),
@@ -156,7 +158,8 @@ class _MyFirstPageState extends State<MyFirstPage> {
           Text(
             "$title",
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
-          )
+          ),
+          Image.asset(imgName),
         ],
       ),
     );
@@ -166,7 +169,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
     return Container(
       child: InkWell(
         child: Container(
-          margin: EdgeInsets.only(bottom: 0),
+          margin: EdgeInsets.only(bottom: 1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
               Radius.circular(12),
@@ -174,10 +177,19 @@ class _MyFirstPageState extends State<MyFirstPage> {
             color: docContentBgColor,
           ),
           child: Container(
-            padding: EdgeInsets.all(7),
+            padding: EdgeInsets.all(6),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Container(
+                  width: 50,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image:
+                              AssetImage('assets/images/docprofile/$imgName'),
+                          fit: BoxFit.cover)),
+                ),
                 SizedBox(
                   width: 10,
                 ),
