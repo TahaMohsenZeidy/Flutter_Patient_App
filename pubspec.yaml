@@ -1,5 +1,5 @@
-name: flutter_app
-description: A Flutter Application To Manage Transactions In A Hospital.
+name: patient_app
+description: Flutter App to manage patients data
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -23,6 +23,38 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  lottie: ^1.0.1
+  # firebase
+  cloud_firestore: ^2.2.0
+  firebase_core: ^1.2.0
+  firebase_auth: ^1.2.0
+  qr_flutter: ^3.2.0
+  qrscan: ^0.2.22
+  easy_gradient_text: ^1.0.0
+  responsive_widgets: ^0.1.10
+  auto_animated: ^1.2.3
+  flutter_staggered_animations: ^0.1.2
+  cached_network_image: ^2.0.0-rc
+  page_transition: "^1.1.5"
+  provider: ^5.0.0
+  google_sign_in: ^4.5.9
+  flutter_signin_button: ^1.0.0
+  firebase: ^9.0.1
+  flare_flutter: ^3.0.0
+  flutter_bloc: ^7.0.0
+  shared_preferences: ^2.0.6
+  charts_flutter: ^0.10.0
+  intl: ^0.17.0
+  flutter_local_notifications: ^5.0.0+1
+  auto_size_text: ^2.1.0
+  firebase_database: ^6.0.0
+  fluttertoast: ^8.0.7
+
+
+flutter_native_splash:
+  image: assets/blue.png
+  color: "42a5f5"
+  fill: true
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +64,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -45,8 +78,16 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
+    - assets/images/category/
+    - assets/onBoardDoc.png
+    - assets/images/docprofile/
+    - assets/images/docinfo/bg1.png
+    - assets/animations/Success Check.flr
+    - assets/animations/
+    - assets/sound/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -54,16 +95,16 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: avenir
+      fonts:
+        - asset: assets/font/avenir.ttf
+    - family: Ic
+      fonts:
+        - asset: assets/fonts/ic/ic_medicine.ttf
+    - family: Angel
+      fonts:
+        - asset: assets/fonts/neu/Angel Signature.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
