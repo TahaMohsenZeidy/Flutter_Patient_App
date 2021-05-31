@@ -1,6 +1,10 @@
 import 'package:patient_app/Patient/DocInfoPage.dart';
 import 'package:patient_app/Patient/colorScheme.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:patient_app/data/data.dart';
+import 'package:patient_app/main.dart';
 
 // ignore: camel_case_types
 class Patient_Home extends StatelessWidget {
@@ -25,6 +29,27 @@ class MyFirstPage extends StatefulWidget {
 }
 
 class _MyFirstPageState extends State<MyFirstPage> {
+  List<Widget> docs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDoctorsInfos();
+  }
+
+  fetchDoctorsInfos() async {
+    var snapQuery = await doctorsRef.get();
+    List<Widget> _tmpDocs = [];
+    snapQuery.docs.forEach((d) {
+      _tmpDocs.add(createDocWidget(d["imgUrl"],
+          "${d['firstName']} ${d['lastName']}", d.id, d["shortDescription"]));
+    });
+
+    setState(() {
+      docs = _tmpDocs;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +71,6 @@ class _MyFirstPageState extends State<MyFirstPage> {
                 AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  leading: Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                    size: 30,
-                  ),
                   actions: <Widget>[
                     Container(
                       height: 75,
@@ -83,7 +103,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Select a Doctor or Category",
+                        "Find Doctor or Category",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w700,
@@ -100,14 +120,21 @@ class _MyFirstPageState extends State<MyFirstPage> {
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
-                            categoryContainer("category7.png", "CT-Scan"),
-                            categoryContainer("category1.png", "Ortho"),
-                            categoryContainer("category2.png", "Dietician"),
-                            categoryContainer("category3.png", "Physician"),
-                            categoryContainer("category4.png", "Paralysis"),
-                            categoryContainer("category5.png", "Cardiology"),
-                            categoryContainer("category6.png", "MRI - Scan"),
-                            categoryContainer("category8.png", "Gynaecology"),
+                            categoryContainer(
+                                "assets/category7.png", "CT-Scan"),
+                            categoryContainer("assets/category1.png", "Ortho"),
+                            categoryContainer(
+                                "assets/category2.png", "Dietician"),
+                            categoryContainer(
+                                "assets/category3.png", "Physician"),
+                            categoryContainer(
+                                "assets/category4.png", "Paralysis"),
+                            categoryContainer(
+                                "assets/category5.png", "Cardiology"),
+                            categoryContainer(
+                                "assets/category6.png", "MRI - Scan"),
+                            categoryContainer(
+                                "assets/category8.png", "Gynaecology"),
                           ],
                         ),
                       ),
@@ -127,12 +154,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                           physics: BouncingScrollPhysics(),
                           child: Column(
                             children: <Widget>[
-                              createDocWidget("doc1.png", "Maryem Hamdani"),
-                              createDocWidget("doc2.png", "Taha Zeidi"),
-                              createDocWidget("doc3.png", "Sonia Rbii"),
-                              createDocWidget("doc1.png", "Olfa Frikha"),
-                              createDocWidget("doc2.png", "Ayoub Balti"),
-                              createDocWidget("doc3.png", "Haifa Chriha"),
+                              ...docs,
                             ],
                           ),
                         ),
@@ -156,28 +178,40 @@ class _MyFirstPageState extends State<MyFirstPage> {
           Text(
             "$title",
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
-          )
+          ),
+          Image.asset(imgName),
         ],
       ),
     );
   }
 
-  Container createDocWidget(String imgName, String docName) {
+  Container createDocWidget(
+      String imgName, String docName, String docId, String shortDescription) {
     return Container(
       child: InkWell(
         child: Container(
-          margin: EdgeInsets.only(bottom: 0),
+          margin: EdgeInsets.only(bottom: 1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(12),
+              Radius.circular(10),
             ),
             color: docContentBgColor,
           ),
           child: Container(
-            padding: EdgeInsets.all(7),
+            padding: EdgeInsets.all(6),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(3),
+                  height: 65,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: NetworkImage(imgName), fit: BoxFit.fill),
+                  ),
+                ),
                 SizedBox(
                   width: 10,
                 ),
@@ -198,7 +232,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                       width: 250,
                       height: 50,
                       child: Text(
-                        "A brief about the doctor to be added here.",
+                        "$shortDescription",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -212,7 +246,16 @@ class _MyFirstPageState extends State<MyFirstPage> {
             ),
           ),
         ),
-        onTap: openDocInfo,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => docInfoPage(
+                docId: docId,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
