@@ -1,6 +1,10 @@
 import 'package:patient_app/Patient/DocInfoPage.dart';
 import 'package:patient_app/Patient/colorScheme.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:patient_app/data/data.dart';
+import 'package:patient_app/main.dart';
 
 // ignore: camel_case_types
 class Patient_Home extends StatelessWidget {
@@ -25,6 +29,27 @@ class MyFirstPage extends StatefulWidget {
 }
 
 class _MyFirstPageState extends State<MyFirstPage> {
+  List<Widget> docs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDoctorsInfos();
+  }
+
+  fetchDoctorsInfos() async {
+    var snapQuery = await doctorsRef.get();
+    List<Widget> _tmpDocs = [];
+    snapQuery.docs.forEach((d) {
+      _tmpDocs.add(createDocWidget(d["imgUrl"],
+          "${d['firstName']} ${d['lastName']}", d.id, d["shortDescription"]));
+    });
+
+    setState(() {
+      docs = _tmpDocs;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,12 +154,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                           physics: BouncingScrollPhysics(),
                           child: Column(
                             children: <Widget>[
-                              createDocWidget("doc1.png", "Maryem Hamdani"),
-                              createDocWidget("doc2.png", "Taha Zeidi"),
-                              createDocWidget("doc3.png", "Sonia Rbii"),
-                              createDocWidget("doc1.png", "Olfa Frikha"),
-                              createDocWidget("doc2.png", "Ayoub Balti"),
-                              createDocWidget("doc3.png", "Haifa Chriha"),
+                              ...docs,
                             ],
                           ),
                         ),
@@ -165,14 +185,15 @@ class _MyFirstPageState extends State<MyFirstPage> {
     );
   }
 
-  Container createDocWidget(String imgName, String docName) {
+  Container createDocWidget(
+      String imgName, String docName, String docId, String shortDescription) {
     return Container(
       child: InkWell(
         child: Container(
           margin: EdgeInsets.only(bottom: 1),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(12),
+              Radius.circular(10),
             ),
             color: docContentBgColor,
           ),
@@ -182,13 +203,14 @@ class _MyFirstPageState extends State<MyFirstPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  width: 50,
-                  height: 60,
+                  margin: EdgeInsets.all(3),
+                  height: 65,
+                  width: 60,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image:
-                              AssetImage('assets/images/docprofile/$imgName'),
-                          fit: BoxFit.cover)),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: NetworkImage(imgName), fit: BoxFit.fill),
+                  ),
                 ),
                 SizedBox(
                   width: 10,
@@ -210,7 +232,7 @@ class _MyFirstPageState extends State<MyFirstPage> {
                       width: 250,
                       height: 50,
                       child: Text(
-                        "A brief about the doctor to be added here.",
+                        "$shortDescription",
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
@@ -224,7 +246,16 @@ class _MyFirstPageState extends State<MyFirstPage> {
             ),
           ),
         ),
-        onTap: openDocInfo,
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => docInfoPage(
+                docId: docId,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

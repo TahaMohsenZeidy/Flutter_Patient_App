@@ -19,6 +19,9 @@ class DocInfoPage extends StatelessWidget {
 }
 
 class docInfoPage extends StatefulWidget {
+  final String docId;
+
+  const docInfoPage({Key key, this.docId}) : super(key: key);
   @override
   _docInfoPageState createState() => _docInfoPageState();
 }
@@ -32,11 +35,12 @@ class _docInfoPageState extends State<docInfoPage> {
     fetchPageData();
   }
 
+  Data dat;
   fetchPageData() async {
     var refeferenceData = FirebaseFirestore.instance.collection("doctors");
-    var data = await refeferenceData.doc("xHivhBBk8JEQbyLJpAVO").get();
+    var data = await refeferenceData.doc(widget.docId).get();
     datalist.clear();
-    Data d = new Data(
+    dat = new Data(
       data["imgUrl"],
       data["firstName"],
       data["lastName"],
@@ -47,11 +51,66 @@ class _docInfoPageState extends State<docInfoPage> {
       data["availableTime"],
     );
 
-    print(data["imgUrl"]);
-
     setState(() {
-      datalist.add(d);
+      datalist.add(dat);
     });
+  }
+
+  buildPageImage(String spec) {
+    switch (spec) {
+      case "Heart Surgeon":
+        {
+          return Image.asset('assets/images/docinfo/bg1.png');
+        }
+        break;
+      case "CT-Scan":
+        {
+          return Image.asset('assets/images/docinfo/bg2.png');
+        }
+        break;
+
+      case "Ortho":
+        {
+          return Image.asset('assets/images/docinfo/bg3.png');
+        }
+        break;
+
+      case "Dietician":
+        {
+          return Image.asset('assets/images/docinfo/bg4.png');
+        }
+        break;
+
+      case "Physician":
+        {
+          return Image.asset('assets/images/docinfo/bg5.png');
+        }
+        break;
+
+      case "Paralysis":
+        {
+          return Image.asset('assets/images/docinfo/bg7.png');
+        }
+        break;
+
+      case "MRI - Scan":
+        {
+          return Image.asset('assets/images/docinfo/bg2.png');
+        }
+        break;
+
+      case "Gynaecology":
+        {
+          return Image.asset('assets/images/docinfo/bg6.png');
+        }
+        break;
+
+      default:
+        {
+          return Text("");
+        }
+        break;
+    }
   }
 
   @override
@@ -63,20 +122,17 @@ class _docInfoPageState extends State<docInfoPage> {
                 "No Data Available",
                 style: TextStyle(fontSize: 30),
               ))
-            : ListView.builder(
-                itemBuilder: (_, index) {
-                  return CardUI(
-                    datalist[index].imgUrl,
-                    datalist[index].firstName,
-                    datalist[index].lastName,
-                    datalist[index].speciality,
-                    datalist[index].hospital,
-                    datalist[index].shortDesc,
-                    datalist[index].longDesc,
-                    datalist[index].availableTime.toString(),
-                  );
-                },
-              ));
+            : Container(
+                child: CardUI(
+                dat.imgUrl,
+                dat.firstName,
+                dat.lastName,
+                dat.speciality,
+                dat.hospital,
+                dat.shortDesc,
+                dat.longDesc,
+                dat.availableTime.toString(),
+              )));
   }
 
   Widget CardUI(
@@ -88,6 +144,7 @@ class _docInfoPageState extends State<docInfoPage> {
       String shortDesc,
       String longDesc,
       String availableTime) {
+    print("spectialty = $speciality");
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -106,7 +163,7 @@ class _docInfoPageState extends State<docInfoPage> {
             width: MediaQuery.of(context).size.width,
             child: Container(
               padding: EdgeInsets.all(20),
-              child: Image.asset('assets/images/docinfo/bg1.png'),
+              child: buildPageImage(speciality),
             ),
           ),
           Container(
