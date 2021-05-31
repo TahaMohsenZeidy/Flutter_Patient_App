@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:patient_app/main.dart';
 
 class EditProfile extends StatefulWidget {
@@ -10,6 +11,7 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   bool isObscurePassword = true;
   Map label_vlaue = Map<String, String>();
+  String email = currentUser.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class _EditProfileState extends State<EditProfile> {
             Icons.arrow_back,
             color : Colors.white,
           ),
-          onPressed: () {} ,
+          onPressed: () => Navigator.of(context).pop(context),
           ),
           actions: [
             IconButton(
@@ -29,7 +31,6 @@ class _EditProfileState extends State<EditProfile> {
                 Icons.settings,
                 color: Colors.white,
               ),
-              onPressed: () {}
                )
           ],
       ),
@@ -60,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: AssetImage(
-                              "assets/blue.png"
+                              "assets/as.png"
                              )   
                           )
                         )
@@ -89,13 +90,14 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
               SizedBox(height : 30),
-              buildTextField("name","First&Last Name", false),
-              buildTextField("email","Email", false),
-              buildTextField("pass","Password", true),
-              buildTextField("phone","Phone", false),
-              buildTextField("spec","Speciality", false),
-              buildTextField("exp","Experience Years", false),
-              buildTextField("desc","Description", false),
+              buildTextField("Name","Name", false),
+              buildTextField("Email","$email", false),
+              buildTextField("Password","Password", true),
+              buildTextField("Phone","Phone", false),
+              buildTextField("Speciality","Speciality", false),
+              buildTextField("Experience","Experience Years", false),
+              buildTextField("Description","Description", false),
+              buildTextField("Hospital","Hospital", false),
               SizedBox(height:30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +116,7 @@ class _EditProfileState extends State<EditProfile> {
                    ),
                    ElevatedButton(
                      onPressed:() {
-                       usersRef.doc(currentUser.uid).set({
+                       doctorsRef.doc(currentUser.uid).set({
                          "username": label_vlaue["name"],
                          "email": label_vlaue["name"],
                          "password": label_vlaue["pass"],
@@ -123,7 +125,14 @@ class _EditProfileState extends State<EditProfile> {
                          "description": label_vlaue["desc"],
                          "speciality": label_vlaue["spec"],
                        });
-
+                       Fluttertoast.showToast(
+                           msg: 'Profile Updated Successfully',
+                           toastLength: Toast.LENGTH_SHORT,
+                           gravity: ToastGravity.BOTTOM,
+                           backgroundColor: Colors.green,
+                           textColor: Colors.red
+                       );
+                       Navigator.of(context).maybePop();
                      },
                       child: Text ("SAVE", style: TextStyle(
                         fontSize: 15,
@@ -153,6 +162,9 @@ class _EditProfileState extends State<EditProfile> {
       child: TextField(
         obscureText: isPasswordTextField ? isObscurePassword :false,
         decoration:InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: labelText,
+            hintText: placeholder,
           suffixIcon:  isPasswordTextField ?
           IconButton(
             icon: Icon(Icons.remove_red_eye, color:Colors.grey),
@@ -163,7 +175,6 @@ class _EditProfileState extends State<EditProfile> {
             },
           ):null,
           contentPadding: EdgeInsets.only(bottom:5),
-          labelText: placeholder,
           hintStyle: TextStyle(
             fontSize:16,
             fontWeight: FontWeight.bold,
@@ -175,7 +186,7 @@ class _EditProfileState extends State<EditProfile> {
             label_vlaue.putIfAbsent(labelText, () => value);
             print(label_vlaue);
           }
-          
+
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:patient_app/main.dart';
 
 class SignUp extends StatefulWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   _SignUpState createState() => _SignUpState();
 }

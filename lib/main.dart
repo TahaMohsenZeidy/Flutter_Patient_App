@@ -8,7 +8,7 @@ import 'Start.dart';
 
 var usersRef = FirebaseFirestore.instance.collection("users");
 var patientsRef = FirebaseFirestore.instance.collection("patients");
-var doctorsRef = FirebaseFirestore.instance.collection("doctors");
+var doctorsRef = FirebaseFirestore.instance.collection("Full_Profile_Doc");
 var currentUser;
 
 void main() async {

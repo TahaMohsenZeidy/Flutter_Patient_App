@@ -51,6 +51,7 @@ dependencies:
   fluttertoast: ^8.0.7
 
 
+
 flutter_native_splash:
   image: assets/blue.png
   color: "42a5f5"

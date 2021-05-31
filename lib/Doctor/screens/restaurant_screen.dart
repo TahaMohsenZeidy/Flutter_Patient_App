@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/models/food.dart';
 import 'package:patient_app/models/restaurant.dart';
-import 'package:patient_app/Doctor/widgets/rating_stars.dart';
 
 class RestaurantScreen extends StatefulWidget {
   final Restaurant restaurant;
@@ -154,7 +153,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                     ),
                   ],
                 ),
-                RatingStars(widget.restaurant.rating),
                 SizedBox(height: 6.0),
                 Text(
                   widget.restaurant.address,
@@ -201,7 +199,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           SizedBox(height: 10.0),
           Center(
             child: Text(
-              'Menu',
+              'Medical History',
               style: TextStyle(
                 fontSize: 22.0,
                 fontWeight: FontWeight.w600,

@@ -4,7 +4,6 @@ import 'package:patient_app/Doctor/data/data2.dart';
 import 'package:patient_app/models/restaurant.dart';
 import 'package:patient_app/Doctor/screens/restaurant_screen.dart';
 import 'package:patient_app/Doctor/sidebar/sidebar.dart';
-import 'package:patient_app/Doctor/widgets/rating_stars.dart';
 
 class PatientsScreen extends StatefulWidget with NavigationStates {
   @override
@@ -62,7 +61,6 @@ class _HomeScreenState extends State<PatientsScreen> {
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                        RatingStars(restaurant.rating),
                         SizedBox(height: 4.0),
                         Text(
                           restaurant.address,
