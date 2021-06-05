@@ -107,12 +107,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     );
   }
 
-  ///I use this function to make an aggragated list
-  ///this list will then be feeded into the listview"builder
-  ///IMPORTANT : Using this function i understood
-  ///that gicving keys to child widget is important if you are
-  ///panning on rebuilding them dynamically by adding custom parameters
   Future<bool> initiateList() async {
+
     //First we work on the header of the list
     topHeader.add(
       Padding(
@@ -151,7 +147,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     //now we create the card comming from the appointment manager
     for (var anElement in AppointmentManager.appointmentList) {
       if (anElement.isFuture == false) {
-        ///not obliged to be this way , can directly be passed at time of initialization
         SlidingCardController aController = new SlidingCardController();
         print('adding big card');
         currentAppointment.add(Center(

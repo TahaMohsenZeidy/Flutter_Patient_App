@@ -134,21 +134,12 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
-                        icon: Icons.contacts,
-                        title: "Contact Analyser",
+                        icon: Icons.contact_phone,
+                        title: "Dashboard",
                         onTap: () {
                           onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.NewPatientClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.contact_phone,
-                        title: "Contact Pharmacist",
-                        onTap: () {
-                          // onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.DoctorDashClickedEvent);
                         },
                       ),
                       MenuItem(
@@ -170,6 +161,11 @@ class _SideBarState extends State<SideBar>
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.LogoutClickedEvent);
+                        },
                       ),
                     ],
                   ),

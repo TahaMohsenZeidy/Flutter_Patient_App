@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'bloc.navigation_bloc/navigation_bloc.dart';
 
-class HomePage1 extends StatefulWidget with NavigationStates {
+class DoctorDash extends StatefulWidget with NavigationStates {
   final Widget child;
+  DoctorDash({Key key, this.child}) : super(key: key);
 
-  HomePage1({Key key, this.child}) : super(key: key);
-
-  _HomePageState createState() => _HomePageState();
+  _DoctorDashState createState() => _DoctorDashState();
 }
 
-class _HomePageState extends State<HomePage1> {
+class _DoctorDashState extends State<DoctorDash> {
   List<charts.Series<Pollution, String>> _seriesData;
   List<charts.Series<Task, String>> _seriesPieData;
   List<charts.Series<Sales, int>> _seriesLineData;
@@ -175,7 +173,6 @@ class _HomePageState extends State<HomePage1> {
                 Tab(icon: Icon(FontAwesomeIcons.chartLine)),
               ],
             ),
-            title: Text('Dashboard'),
           ),
           body: TabBarView(
             children: [
@@ -186,7 +183,7 @@ class _HomePageState extends State<HomePage1> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'number of medical images made per day',
+                          'number of patients daily',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -211,7 +208,7 @@ class _HomePageState extends State<HomePage1> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Time spent on daily tasks',
+                          'Ages of Patients',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),
@@ -257,7 +254,7 @@ class _HomePageState extends State<HomePage1> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Sales for the first 5 years',
+                          'Total Income',
                           style: TextStyle(
                               fontSize: 24.0, fontWeight: FontWeight.bold),
                         ),

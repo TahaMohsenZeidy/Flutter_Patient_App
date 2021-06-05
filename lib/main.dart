@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'Login.dart';
 import 'SignUp.dart';
 import 'Start.dart';
 
 var usersRef = FirebaseFirestore.instance.collection("users");
-var patientsRef = FirebaseFirestore.instance.collection("patients");
+final patientsRef = FirebaseFirestore.instance.collection("patients");
 var doctorsRef = FirebaseFirestore.instance.collection("Full_Profile_Doc");
+final diseasesRef = FirebaseFirestore.instance.collection("Disease");
 var currentUser;
 
 void main() async {
@@ -16,7 +17,6 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

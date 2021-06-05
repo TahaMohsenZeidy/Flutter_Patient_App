@@ -1,56 +1,24 @@
 import 'package:patient_app/models/appointmentModels/Appointment.dart';
-
 import '../data/randomData.dart' as RDT;
-import 'dart:math';
 
-///Data will e created randomnly 
 class AppointmentManager {
   static List<Appointment> appointmentList = [];
-
   static List generateAppointmentList() {
-    var randomX = Random().nextInt(7);
-    while(randomX == 0 )
-    {
-      randomX = Random().nextInt(40);
-    }
-    int randomGender;
+    var currentTime = DateTime.now();
     String imgLink;
-    for (int i = 0; i < randomX; i++) {
-      randomGender = Random().nextInt(2);
-      if (randomGender == 0) // it is a boy
-      {
-        imgLink = 'https://randomuser.me/api/portraits/men/' +
-            Random().nextInt(40).toString() +
-            '.jpg';
-      } else // it is a girl
-      {
-        imgLink = 'https://randomuser.me/api/portraits/women/' +
-            Random().nextInt(40).toString() +
-            '.jpg';
-      }
+    imgLink = 'assets/user0.jpg';
+    for(int i=0; i<3; i++){
       appointmentList.add(Appointment(
-        patientName: RDT.lastName[Random().nextInt(RDT.lastName.length)],
-        patienSurname: RDT.mames[Random().nextInt(RDT.mames.length)],
-        appoitmentComment: RDT.comments[Random().nextInt(RDT.comments.length)],
-        appoitmentDate: Random().nextInt(29).toString() + ' Jan 2020',
-        appoitmentTime: Random().nextInt(12).toString() +
-            'am - ' +
-            Random().nextInt(12).toString() +
-            'pm',
-        phoneNumber: Random().nextInt(333333333).toString(),
+        patientName: RDT.lastName[i],
+        patienSurname: RDT.mames[i],
+        appoitmentComment: RDT.comments[i],
+        appoitmentDate: '',
+        appoitmentTime: '$currentTime',
+        phoneNumber: '50056505',
         imgLink: imgLink,
       ));
-      if (Random().nextInt(2) == 0)
-      //true
-      {
-        appointmentList[i].isFuture = true;
-      }
-      //false
-      else {
-        appointmentList[i].isFuture = false;
-      }
+      appointmentList[i].isFuture = true;
     }
-    print('List is successfully generated');
     return appointmentList;
   }
 }

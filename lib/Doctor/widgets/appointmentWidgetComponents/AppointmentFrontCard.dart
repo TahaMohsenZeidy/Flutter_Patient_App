@@ -123,13 +123,19 @@ class _AppointmentFrontCardState extends State<AppointmentFrontCard> {
                             child: Container(
                               width: SizeConfig.safeBlockHorizontal * 15,
                               height: SizeConfig.safeBlockVertical * 8,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: CachedNetworkImageProvider(
-                                          widget.imgLink),
-                                      fit: BoxFit.fill),
-                                  color: Colors.grey[200],
-                                  borderRadius: BorderRadius.circular(16)),
+                              // decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //         image: CachedNetworkImageProvider(
+                              //             widget.imgLink),
+                              //         fit: BoxFit.fill),
+                              //     color: Colors.grey[200],
+                              //     borderRadius: BorderRadius.circular(16)),
+                              decoration: new BoxDecoration(
+                                image: new DecorationImage(
+                                  image: new ExactAssetImage('assets/user0.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(

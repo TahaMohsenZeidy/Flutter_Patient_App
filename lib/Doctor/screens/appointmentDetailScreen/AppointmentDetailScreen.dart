@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_app/Doctor/scan_generate_QR/Scan.dart';
 import 'package:patient_app/models/appointmentModels/Appointment.dart';
 import 'package:patient_app/Doctor/widgets/appointmentWidgetComponents/ActionButton.dart';
 
@@ -93,7 +94,10 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
         opacity: isContainerCollapsed ? 0 : 1,
         child: ActionButton(
           onAcceptPressed: () {
-            print('Nothing Configured for it ');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => new ScanPage()));
           },
           onDecinePressed: () {
             reverseAnimation();
@@ -165,16 +169,22 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
                               opacity: isUserProfileImageVisible ? 1 : 0,
                               duration: Duration(milliseconds: 300),
                               child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: CachedNetworkImageProvider(
-                                          widget.appointmentData.imgLink),
-                                      fit: BoxFit.fill),
-                                  color: Colors.grey[200],
-                                  border:
-                                      Border.all(color: Colors.white, width: 5),
-                                  borderRadius: BorderRadius.circular(35),
+                                decoration: new BoxDecoration(
+                                  image: new DecorationImage(
+                                    image: new ExactAssetImage('assets/user0.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
+                                // decoration: BoxDecoration(
+                                //   image: DecorationImage(
+                                //       image: CachedNetworkImageProvider(
+                                //           widget.appointmentData.imgLink),
+                                //       fit: BoxFit.fill),
+                                //   color: Colors.grey[200],
+                                //   border:
+                                //       Border.all(color: Colors.white, width: 5),
+                                //   borderRadius: BorderRadius.circular(35),
+                                // ),
                                 height: SizeConfig.safeBlockVertical * 13,
                                 width: SizeConfig.safeBlockHorizontal * 26,
                               ),
