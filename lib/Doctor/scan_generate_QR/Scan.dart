@@ -1,4 +1,5 @@
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:patient_app/Doctor/screens/all_history.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter/material.dart';
 import 'package:patient_app/Doctor/new_consultation.dart';
@@ -145,15 +146,28 @@ class _ScanPageState extends State<ScanPage> {
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text("Guild",
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                ),),
-                                              Text("FairyTail, Magnolia",
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  color: Colors.grey[400],
-                                                ),)
+                                              ElevatedButton(
+                                                child: Text(
+                                                  'Patients History',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Aleo',
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 18.0,
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext context) => new PatientsScreen()));
+                                                },
+                                              ),
+                                              // Text("",
+                                              //   style: TextStyle(
+                                              //     fontSize: 15.0,
+                                              //   ),),
                                             ],
                                           )
 
@@ -172,42 +186,24 @@ class _ScanPageState extends State<ScanPage> {
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text("Magic",
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                ),),
-                                              Text("Spatial & Sword Magic, Telekinesis",
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  color: Colors.grey[400],
-                                                ),)
-                                            ],
-                                          )
-
-                                        ],
-                                      ),
-                                      SizedBox(height: 20.0,),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Icon(
-                                            Icons.favorite,
-                                            color: Colors.blueAccent,
-                                            size: 35,
-                                          ),
-                                          SizedBox(width: 20.0,),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text("Loves",
-                                                style: TextStyle(
-                                                  fontSize: 15.0,
-                                                ),),
-                                              Text("Eating cakes",
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  color: Colors.grey[400],
-                                                ),)
+                                              ElevatedButton(
+                                                child: Text(
+                                                  'Medical Tests    ',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Aleo',
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 18.0,
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext context) => new PatientsScreen()));
+                                                },
+                                              ),
                                             ],
                                           )
 
@@ -237,13 +233,13 @@ class _ScanPageState extends State<ScanPage> {
                           Container(
                               child:Column(
                                 children: [
-                                  Text('Battles',
+                                  Text('Gender',
                                     style: TextStyle(
                                         color: Colors.blueAccent,
                                         fontSize: 14.0
                                     ),),
                                   SizedBox(height: 5.0,),
-                                  Text("hello",
+                                  Text("Male",
                                     style: TextStyle(
                                       fontSize: 15.0,
                                     ),)

@@ -81,7 +81,8 @@ class _LoginState extends State<Login> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 300,
+              padding: EdgeInsets.all(10.0),
+              height: 250,
               child: Image(
                 image: AssetImage("assets/login.png"),
                 fit: BoxFit.contain,
@@ -115,7 +116,7 @@ class _LoginState extends State<Login> {
                           obscureText: true,
                           onSaved: (input) => _password = input),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 30),
                     RaisedButton(
                       padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
                       onPressed: login,

@@ -116,24 +116,6 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
-                        icon: Icons.person_add_alt,
-                        title: "Add Patient",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.AddNewPatientClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.view_list,
-                        title: "Patients List",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.PatientListClickedEvent);
-                        },
-                      ),
-                      MenuItem(
                         icon: Icons.contact_phone,
                         title: "Dashboard",
                         onTap: () {

@@ -3,13 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:patient_app/Doctor/screens/appointmentScreen/appointmentScreen.dart';
 import 'package:patient_app/Doctor/screens/profile_screen.dart';
-import 'package:patient_app/Doctor/screens/resto_home_screen.dart';
+import 'package:patient_app/Doctor/screens/all_history.dart';
 import 'package:patient_app/Doctor/doctor_dashboard.dart';
 import 'package:patient_app/Login.dart';
 
 enum NavigationEvents {
   HomePageClickedEvent,
-  AddNewPatientClickedEvent,
   PatientListClickedEvent,
   ProfileScreenClickedEvent,
   DoctorDashClickedEvent,

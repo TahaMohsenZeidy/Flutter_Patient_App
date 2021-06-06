@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:patient_app/Doctor/Logic/AppointmentManager.dart';
+import 'package:patient_app/Doctor/data/randomData.dart' as RDT;
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
 import 'dart:math';
 import 'package:patient_app/Doctor/screens/appointmentDetailScreen/AppointmentDetailScreen.dart';
@@ -9,6 +10,8 @@ import 'package:patient_app/Doctor/sidebar/sidebar.dart';
 import 'package:patient_app/Doctor/widgets/appointmentWidgetComponents/AppointmentCard.dart';
 import 'package:patient_app/Doctor/widgets/appointmentWidgetComponents/MiniAppointmentCard.dart';
 import 'package:patient_app/Doctor/widgets/appointmentWidgetComponents/SlidingCard.dart';
+import 'package:patient_app/main.dart';
+import 'package:patient_app/models/appointmentModels/Appointment.dart';
 import '../../../sizeConfig.dart';
 
 class AppointmentScreen extends StatefulWidget with NavigationStates {
@@ -33,8 +36,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     midHeader = [];
     futureAppointment = [];
     finalList = [];
-    AppointmentManager.generateAppointmentList();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,45 +46,61 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       initiateList();
       isFirstTime = true;
     }
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        backgroundColor: Color(0xffF3F6FF).withOpacity(0.134),
-        elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.sync,
-              color: Colors.black54,
-              size: SizeConfig.horizontalBloc * 8,
+    return FutureBuilder<DocumentSnapshot>(
+      future: appointmentsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+
+        if (snapshot.hasData && !snapshot.data.exists) {
+          return Text("Document does not exist");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data.data();
+          // return Text("Full Name: ${data['full name']} ${data['Gender']}");
+          return Scaffold(
+            backgroundColor: Colors.grey[100],
+            appBar: AppBar(
+              backgroundColor: Color(0xffF3F6FF).withOpacity(0.134),
+              elevation: 0,
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.sync,
+                    color: Colors.black54,
+                    size: SizeConfig.horizontalBloc * 8,
+                  ),
+                  onPressed: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    topHeader..clear();
+                    currentAppointment..clear();
+                    midHeader..clear();
+                    futureAppointment.clear();
+                    finalList..clear();
+                    AppointmentManager.appointmentList.clear();
+                    print(finalList.length);
+                    AppointmentManager.generateAppointmentList(data);
+                    initiateList();
+
+                    Future.delayed(Duration(milliseconds: 375), () {
+                      isLoading = false;
+                      setState(() {});
+                    });
+                  },
+                )
+              ],
             ),
-            onPressed: () async {
-              setState(() {
-                isLoading = true;
-              });
-
-              topHeader..clear();
-              currentAppointment..clear();
-              midHeader..clear();
-              futureAppointment.clear();
-              finalList..clear();
-              AppointmentManager.appointmentList.clear();
-              //print(finalList.length);
-              AppointmentManager.generateAppointmentList();
-              initiateList();
-
-              Future.delayed(Duration(milliseconds: 375), () {
-                isLoading = false;
-                setState(() {});
-              });
-            },
-          )
-        ],
-      ),
-      drawer: SideBar(),
-      body: isLoading
-          ? SizedBox()
-          : Container(
+            drawer: SideBar(),
+            body: isLoading
+                ? SizedBox()
+                : Container(
               color: Color(0xffF3F6FF).withOpacity(0.134),
               child: AnimationLimiter(
                 child: ListView.builder(
@@ -104,6 +123,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 ),
               ),
             ),
+          );
+        }
+        return Text("loading");
+      },
     );
   }
 
@@ -213,4 +236,30 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     setState(() {});
     return true;
   }
+
+
+
 }
+
+
+class AppointmentManager {
+  static List<Appointment> appointmentList = [];
+  static List generateAppointmentList(Map<String, dynamic> data) {
+    var currentTime = DateTime.now();
+    String imgLink;
+    imgLink = 'assets/user0.jpg';
+    for(int i=0; i<3; i++){
+      appointmentList.add(Appointment(
+        patientName: "${data['patient_full_name']}",
+        appoitmentComment: RDT.comments[i],
+        appoitmentDate: '',
+        appoitmentTime: '$currentTime',
+        phoneNumber: '50056505',
+        imgLink: imgLink,
+      ));
+      appointmentList[i].isFuture = true;
+    }
+    return appointmentList;
+  }
+}
+

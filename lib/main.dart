@@ -10,6 +10,7 @@ var usersRef = FirebaseFirestore.instance.collection("users");
 final patientsRef = FirebaseFirestore.instance.collection("patients");
 var doctorsRef = FirebaseFirestore.instance.collection("Full_Profile_Doc");
 final diseasesRef = FirebaseFirestore.instance.collection("Disease");
+final appointmentsRef = FirebaseFirestore.instance.collection("Appointments");
 var currentUser;
 
 void main() async {
