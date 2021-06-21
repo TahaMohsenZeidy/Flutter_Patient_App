@@ -5,13 +5,13 @@ import 'package:rxdart/rxdart.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
 
-class SideBar extends StatefulWidget {
+class SideBarRadiologist extends StatefulWidget {
   @override
   _SideBarState createState() => _SideBarState();
 }
 
-class _SideBarState extends State<SideBar>
-    with SingleTickerProviderStateMixin<SideBar> {
+class _SideBarState extends State<SideBarRadiologist>
+    with SingleTickerProviderStateMixin<SideBarRadiologist> {
   AnimationController _animationController;
   StreamController<bool> isSidebarOpenedStreamController;
   Stream<bool> isSidebarOpenedStream;
@@ -121,25 +121,16 @@ class _SideBarState extends State<SideBar>
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.HomePageClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.view_list,
-                        title: "Patients List",
-                        onTap: () {
-                          onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                              .add(NavigationEvents.DashboardClickedEvent);
                         },
                       ),
                       MenuItem(
                         icon: Icons.face,
-                        title: "Profile",
+                        title: "Edit profile",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.ProfileScreenClickedEvent);
+                              .add(NavigationEvents.EditProfileClickedEvent);
                         },
                       ),
                       Divider(
@@ -148,10 +139,6 @@ class _SideBarState extends State<SideBar>
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
                         endIndent: 32,
-                      ),
-                      MenuItem(
-                        icon: Icons.exit_to_app,
-                        title: "Logout",
                       ),
                     ],
                   ),

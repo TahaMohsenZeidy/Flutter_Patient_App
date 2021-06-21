@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:patient_app/Doctor/data/randomData.dart' as RDT;
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
 import 'dart:math';
 import 'package:patient_app/Doctor/screens/appointmentDetailScreen/AppointmentDetailScreen.dart';
@@ -46,6 +45,11 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       initiateList();
       isFirstTime = true;
     }
+    // var ids = AppointmentManager.getAllAppointmentIDs();
+    // print("tawa bech yebda jaw");
+    // ids.forEach((element){
+    //   print(element);
+    // });
     return FutureBuilder<DocumentSnapshot>(
       future: appointmentsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
       builder:
@@ -78,17 +82,14 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     setState(() {
                       isLoading = true;
                     });
-
                     topHeader..clear();
                     currentAppointment..clear();
                     midHeader..clear();
                     futureAppointment.clear();
                     finalList..clear();
                     AppointmentManager.appointmentList.clear();
-                    print(finalList.length);
                     AppointmentManager.generateAppointmentList(data);
                     initiateList();
-
                     Future.delayed(Duration(milliseconds: 375), () {
                       isLoading = false;
                       setState(() {});
@@ -135,28 +136,28 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     //First we work on the header of the list
     topHeader.add(
       Padding(
-        padding: const EdgeInsets.only(left: 20.0, bottom: 9, top: 7),
+        padding: const EdgeInsets.only(left: 20.0, bottom: 7, top: 7),
         child: new Container(
           width: SizeConfig.safeBlockHorizontal * 90,
-          height: SizeConfig.verticalBloc * 3,
+          height: SizeConfig.verticalBloc * 8,
           //color: Colors.pink,
           child: Text(
             'Bienvenue !',
             style: TextStyle(
-                fontSize: SizeConfig.horizontalBloc * 6, color: Colors.black45),
+                fontSize: SizeConfig.horizontalBloc * 7, color: Colors.black45),
           ),
         ),
       ),
     );
     topHeader.add(
       Padding(
-        padding: const EdgeInsets.only(left: 20.0, bottom: 15),
+        padding: const EdgeInsets.only(left: 20.0, bottom: 7),
         child: new Container(
           width: SizeConfig.safeBlockHorizontal * 90,
-          height: SizeConfig.verticalBloc * 5,
+          height: SizeConfig.verticalBloc * 8,
           //color: Colors.pink,
           child: Text(
-            'Dr. @Taha',
+            'Dr. CurrentDoc',
             style: TextStyle(
               fontSize: SizeConfig.horizontalBloc * 9.5,
               fontWeight: FontWeight.bold,
@@ -236,30 +237,43 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     setState(() {});
     return true;
   }
-
-
-
 }
-
 
 class AppointmentManager {
   static List<Appointment> appointmentList = [];
   static List generateAppointmentList(Map<String, dynamic> data) {
-    var currentTime = DateTime.now();
-    String imgLink;
-    imgLink = 'assets/user0.jpg';
-    for(int i=0; i<3; i++){
-      appointmentList.add(Appointment(
-        patientName: "${data['patient_full_name']}",
-        appoitmentComment: RDT.comments[i],
-        appoitmentDate: '',
-        appoitmentTime: '$currentTime',
-        phoneNumber: '50056505',
-        imgLink: imgLink,
-      ));
-      appointmentList[i].isFuture = true;
-    }
+    String img = "assets/" + data['userImg'];
+    appointmentList.add(Appointment(
+      patientName: "${data["firstName"]}",
+      patienSurname: "${data["lastName"]}",
+      appoitmentComment: "${data["comment"]}",
+      appoitmentDate: "${data['date']}",
+      appoitmentTime: "${data['time']}",
+      phoneNumber: "${data["number"]}",
+      imgLink: img,
+    ));
+    appointmentList[0].isFuture = false;
     return appointmentList;
   }
+
+  static getAllAppointmentIDs() async {
+    // FirebaseFirestore.instance
+    //     .collection('Appointments')
+    //     .get()
+    //     .then((QuerySnapshot querySnapshot) {
+    //   querySnapshot.docs.forEach((doc) {
+    //     print(doc["firstName"]);
+    //   });
+    // });
+    List<String> IDs = [];
+    print("here is the id");
+    FirebaseFirestore.instance.collection('Appointments').get().then((QuerySnapshot querySnapshot) => {
+      querySnapshot.docs.forEach((doc) {
+      IDs.add(doc.id.toString());
+    })
+    });
+    return IDs;
+  }
 }
+
 

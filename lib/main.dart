@@ -11,12 +11,15 @@ final patientsRef = FirebaseFirestore.instance.collection("patients");
 var doctorsRef = FirebaseFirestore.instance.collection("Full_Profile_Doc");
 final diseasesRef = FirebaseFirestore.instance.collection("Disease");
 final appointmentsRef = FirebaseFirestore.instance.collection("Appointments");
+final medTestRef = FirebaseFirestore.instance.collection("medical tests");
+final medImageRef = FirebaseFirestore.instance.collection("Medical image");
+final medicineRef = FirebaseFirestore.instance.collection("Diseases");
 var currentUser;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(MyApp()); 
 }
 class MyApp extends StatelessWidget {
   @override

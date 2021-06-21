@@ -16,7 +16,7 @@ class SideBarLayoutRadiologist extends StatelessWidget {
                 return navigationState as Widget;
               },
             ),
-            SideBar(),
+            SideBarRadiologist(),
           ],
         ),
       ),

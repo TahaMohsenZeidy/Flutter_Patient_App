@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:patient_app/Patient/sidebar/sidebar_layout.dart';
 import 'Doctor/sidebar/sidebar_layout.dart';
 import 'LaboratoryAssistant/sidebar/sidebar_layout.dart';
+import 'Pharmacie/Scan_generate_QR/Scan.dart';
 import 'Radiologist/sidebar/sidebar_layout.dart';
 
 class HomePage extends StatefulWidget {
@@ -129,6 +130,15 @@ class _HomePageState extends State<HomePage> {
                                     builder: (BuildContext context) =>
                                     new SideBarLayoutRadiologist()))
                           }
+                        else if (user.displayName == "Radiologist")
+                            {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    // builder: (BuildContext context) => new EditProfile()))
+                                      builder: (BuildContext context) =>
+                                      new ScanPage()))
+                            }
 
                   },
                   child: Text('Continue',
