@@ -125,6 +125,15 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
+                        icon: Icons.edit,
+                        title: "Edit Profile",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.EditProfileClickedEvent);
+                        },
+                      ),
+                      MenuItem(
                         icon: Icons.archive,
                         title: "View history",
                         onTap: () {

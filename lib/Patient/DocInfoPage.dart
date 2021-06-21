@@ -4,6 +4,7 @@ import 'package:patient_app/Patient/clientAppointment.dart';
 import 'package:patient_app/colorScheme.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_app/data/data.dart';
+import 'package:patient_app/main.dart';
 
 class DocInfoPage extends StatelessWidget {
   @override
@@ -271,6 +272,23 @@ class _docInfoPageState extends State<docInfoPage> {
     );
   }
 
+  Future<void> addAppt(
+      comment, date, firstName, lastName, imgLink, number, time) {
+    // Call the user's CollectionReference to add a new user
+    return appointementsRef
+        .add({
+          'comment': comment, // John Doe
+          'date': date, // Stokes and Sons
+          'firstName': firstName, // 42
+          'lastName': lastName, // 42
+          'imgLink': imgLink, // 42
+          'number': number, // 42
+          'time': time // 42
+        })
+        .then((value) => print("Appointement Added"))
+        .catchError((error) => print("Failed to add appointement: $error"));
+  }
+
   Container timeSlotWidget(
       String date, String month, String slotType, String time) {
     return Container(
@@ -281,55 +299,67 @@ class _docInfoPageState extends State<docInfoPage> {
           color: docContentBgColor),
       child: Container(
         padding: EdgeInsets.all(10),
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: dateBgColor,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "$date",
-                    style: TextStyle(
-                        color: dateColor,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w800),
-                  ),
-                  Text(
-                    "$month",
-                    style: TextStyle(
-                        color: dateColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        child: GestureDetector(
+            child: Row(
               children: <Widget>[
-                Text(
-                  "$slotType",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
+                Container(
+                  width: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: dateBgColor,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "$date",
+                        style: TextStyle(
+                            color: dateColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800),
+                      ),
+                      Text(
+                        "$month",
+                        style: TextStyle(
+                            color: dateColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800),
+                      )
+                    ],
                   ),
                 ),
-                Text(
-                  "$time",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "$slotType",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    Text(
+                      "$time",
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
-        ),
+            ),
+            // When the child is tapped, show a snackbar.
+            onTap: () async {
+              //TODO : Upload appointements
+              await addAppt("Comment", "4", "aze", "aer", "azr", "aze", "aezr");
+
+              final snackBar =
+                  SnackBar(content: Text('Appointment Added Succesfully'));
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }),
       ),
     );
   }

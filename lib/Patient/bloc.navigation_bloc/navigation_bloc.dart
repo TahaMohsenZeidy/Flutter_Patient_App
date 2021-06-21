@@ -3,11 +3,12 @@ import 'package:patient_app/Patient/clientAppointment.dart';
 
 import 'package:patient_app/Patient/ProfilePage.dart';
 import 'package:patient_app/Patient/ViewHistory.dart';
+import 'package:patient_app/Patient/edit_profile.dart';
 
 enum NavigationEvents {
   HomePageClickedEvent,
-
   ProfileClickedEvent,
+  EditProfileClickedEvent,
   HistoryClickedEvent,
 }
 
@@ -26,6 +27,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
 
       case NavigationEvents.ProfileClickedEvent:
         yield ProfilePage();
+        break;
+      case NavigationEvents.EditProfileClickedEvent:
+        yield EditProfile();
         break;
       case NavigationEvents.HistoryClickedEvent:
         yield Patient_View_History();

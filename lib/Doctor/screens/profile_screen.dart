@@ -28,14 +28,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User user = auth.currentUser;
     var currentDoc = doctorsRef.doc(user.uid).get();
-    if (currentDoc == null){
+    if (currentDoc == null) {
       print("it is a new doctor");
-    }
-    else{
+    } else {
       print(currentDoc.toString());
     }
     _email = user.email;
-    currentUser = user;
+    currentUsr = user;
     _yourPostsPageController =
         PageController(initialPage: 0, viewportFraction: 0.8);
     _favoritesPageController =
@@ -194,16 +193,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     MaterialPageRoute(
                         builder: (BuildContext context) => new EditProfile()));
               },
-              child: Text ("Edit Profile", style: TextStyle(
-                  fontSize: 15,
-                  letterSpacing: 2,
-                  color: Colors.white
-              )),
+              child: Text("Edit Profile",
+                  style: TextStyle(
+                      fontSize: 15, letterSpacing: 2, color: Colors.white)),
               style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                   padding: EdgeInsets.symmetric(horizontal: 50),
-                  shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-              ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
             )
           ],
         ),

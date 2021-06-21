@@ -30,7 +30,9 @@ class MyFirstPage extends StatefulWidget {
 
 class _MyFirstPageState extends State<MyFirstPage> {
   List<Widget> docs = [];
-
+  List<Widget> _tmpDocs = [];
+  List<String> specialities = [];
+  var t = "All doctors";
   @override
   void initState() {
     super.initState();
@@ -38,15 +40,31 @@ class _MyFirstPageState extends State<MyFirstPage> {
   }
 
   fetchDoctorsInfos() async {
-    var snapQuery = await doctorsRef.get();
-    List<Widget> _tmpDocs = [];
+    var snapQuery = await docsRef.get();
     snapQuery.docs.forEach((d) {
       _tmpDocs.add(createDocWidget(d["imgUrl"],
           "${d['firstName']} ${d['lastName']}", d.id, d["shortDescription"]));
+      specialities.add(d["speciality"]);
     });
 
     setState(() {
       docs = _tmpDocs;
+    });
+  }
+
+  sortBySpecialty(String speciality) {
+    List<Widget> tmp = [];
+    if (speciality == "All Doctors") {
+      tmp = _tmpDocs;
+    } else {
+      for (int i = 0; i < specialities.length; i++) {
+        if (specialities[i] == speciality) {
+          tmp.add(_tmpDocs[i]);
+        }
+      }
+    }
+    setState(() {
+      docs = tmp;
     });
   }
 
@@ -121,6 +139,8 @@ class _MyFirstPageState extends State<MyFirstPage> {
                           scrollDirection: Axis.horizontal,
                           children: <Widget>[
                             categoryContainer(
+                                "assets/allCat.png", "All Doctors"),
+                            categoryContainer(
                                 "assets/category7.png", "CT-Scan"),
                             categoryContainer("assets/category1.png", "Ortho"),
                             categoryContainer(
@@ -170,19 +190,24 @@ class _MyFirstPageState extends State<MyFirstPage> {
     );
   }
 
-  Container categoryContainer(String imgName, String title) {
-    return Container(
-      width: 130,
-      child: Column(
-        children: <Widget>[
-          Text(
-            "$title",
-            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
+  categoryContainer(String imgName, String title) {
+    return GestureDetector(
+        child: Container(
+          width: 130,
+          child: Column(
+            children: <Widget>[
+              Text(
+                "$title",
+                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
+              ),
+              Image.asset(imgName),
+            ],
           ),
-          Image.asset(imgName),
-        ],
-      ),
-    );
+        ),
+        // When the child is tapped, show a snackbar.
+        onTap: () {
+          sortBySpecialty(title);
+        });
   }
 
   Container createDocWidget(
