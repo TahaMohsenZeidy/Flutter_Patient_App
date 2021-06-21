@@ -352,11 +352,10 @@ class _docInfoPageState extends State<docInfoPage> {
             ),
             // When the child is tapped, show a snackbar.
             onTap: () async {
-              //TODO : Upload appointements
+              //TODO : Upload appointements To The Data
               await addAppt("Comment", "4", "aze", "aer", "azr", "aze", "aezr");
 
-              final snackBar =
-                  SnackBar(content: Text('Appointment Added Succesfully'));
+              final snackBar = SnackBar(content: Text('Appointment Sent '));
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }),
