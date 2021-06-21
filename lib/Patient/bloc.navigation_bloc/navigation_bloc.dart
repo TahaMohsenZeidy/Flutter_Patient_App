@@ -12,7 +12,6 @@ enum NavigationEvents {
   EditProfileClickedEvent,
   HistoryClickedEvent,
   QrCodeClickedEvent
-
 }
 
 abstract class NavigationStates {}
@@ -35,7 +34,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield EditProfile();
         break;
       case NavigationEvents.HistoryClickedEvent:
-        yield Patient_View_History();
+        yield RootApp();
         break;
 
       case NavigationEvents.QrCodeClickedEvent:

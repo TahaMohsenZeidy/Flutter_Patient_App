@@ -24,6 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   lottie: ^1.0.1
+  #chart
+  cupertino_icons: ^1.0.2
+  flutter_icons: ^1.1.0
+  page_transition: ^1.1.7+6
+  animated_bottom_navigation_bar: ^0.2.1
+  fl_chart: ^0.36.2
+  percent_indicator: "^2.1.7+2"
   # firebase
   cloud_firestore: ^2.2.1
   firebase_core: ^1.2.1
@@ -35,7 +42,6 @@ dependencies:
   auto_animated: ^1.2.3
   flutter_staggered_animations: ^0.1.2
   cached_network_image: ^2.0.0-rc
-  page_transition: "^1.1.5"
   provider: ^5.0.0
   google_sign_in: ^4.5.9
   flutter_signin_button: ^1.0.0
