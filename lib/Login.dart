@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Doctor/bloc.navigation_bloc/navigation_bloc.dart';
 import 'SignUp.dart';
 import 'package:patient_app/main.dart';
 
-class Login extends StatefulWidget {
+class Login extends StatefulWidget with NavigationStates {
   @override
   _LoginState createState() => _LoginState();
 }

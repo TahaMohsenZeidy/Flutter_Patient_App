@@ -5,13 +5,13 @@ import 'package:rxdart/rxdart.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
 
-class SideBarLaboratoryAssistant extends StatefulWidget {
+class SideBar extends StatefulWidget {
   @override
   _SideBarState createState() => _SideBarState();
 }
 
-class _SideBarState extends State<SideBarLaboratoryAssistant>
-    with SingleTickerProviderStateMixin<SideBarLaboratoryAssistant> {
+class _SideBarState extends State<SideBar>
+    with SingleTickerProviderStateMixin<SideBar> {
   AnimationController _animationController;
   StreamController<bool> isSidebarOpenedStreamController;
   Stream<bool> isSidebarOpenedStream;
@@ -121,21 +121,12 @@ class _SideBarState extends State<SideBarLaboratoryAssistant>
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
-                              .add(NavigationEvents.HomePageClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.view_list,
-                        title: "Patients List",
-                        onTap: () {
-                          onIconPressed();
-                          // BlocProvider.of<NavigationBloc>(context)
-                          //     .add(NavigationEvents.NewPatientClickedEvent);
+                              .add(NavigationEvents.DashboardClickedEvent);
                         },
                       ),
                       MenuItem(
                         icon: Icons.face,
-                        title: "Profile",
+                        title: " Edit Profile",
                         onTap: () {
                           onIconPressed();
                           BlocProvider.of<NavigationBloc>(context)
@@ -148,10 +139,6 @@ class _SideBarState extends State<SideBarLaboratoryAssistant>
                         color: Colors.white.withOpacity(0.3),
                         indent: 32,
                         endIndent: 32,
-                      ),
-                      MenuItem(
-                        icon: Icons.exit_to_app,
-                        title: "Logout",
                       ),
                     ],
                   ),

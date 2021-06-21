@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'Login.dart';
 import 'SignUp.dart';
 import 'Start.dart';
 
 var usersRef = FirebaseFirestore.instance.collection("users");
-var patientsRef = FirebaseFirestore.instance.collection("patients");
+final patientsRef = FirebaseFirestore.instance.collection("patients");
 var doctorsRef = FirebaseFirestore.instance.collection("Full_Profile_Doc");
 var docsRef = FirebaseFirestore.instance.collection("doctors");
 var appointementsRef = FirebaseFirestore.instance.collection("Appointments");
+final diseasesRef = FirebaseFirestore.instance.collection("Disease");
+final medTestRef = FirebaseFirestore.instance.collection("medical tests");
+final medImageRef = FirebaseFirestore.instance.collection("Medical image");
+final medicineRef = FirebaseFirestore.instance.collection("Diseases");
 var currentUsr = FirebaseAuth.instance.currentUser;
 
 Future<void> main() async {

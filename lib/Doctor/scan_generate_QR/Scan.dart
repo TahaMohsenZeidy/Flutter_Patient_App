@@ -1,14 +1,13 @@
-import 'package:patient_app/Patient/DocInfoPage.dart';
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:patient_app/Doctor/screens/all_history.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter/material.dart';
-import 'package:patient_app/Patient/colorScheme.dart';
+import 'package:patient_app/Doctor/new_consultation.dart';
 
 class ScanPage extends StatefulWidget with NavigationStates {
   @override
   _ScanPageState createState() => _ScanPageState();
 }
-
 class _ScanPageState extends State<ScanPage> {
   String qrCodeResult = "Not Yet Scanned";
   @override
@@ -47,7 +46,6 @@ class _ScanPageState extends State<ScanPage> {
                   setState(() {
                     qrCodeResult = codeSanner;
                   });
-
                   // try{
                   //   BarcodeScanner.scan()    this method is used to scan the QR code
                   // }catch (e){
@@ -70,169 +68,224 @@ class _ScanPageState extends State<ScanPage> {
       );
     } else {
       return Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: [getStartedColorStart, getStartedColorEnd],
-            begin: Alignment(0, -1.15),
-            end: Alignment(0, 0.4),
-          )),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height * 1,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60),
-                    topRight: Radius.circular(60),
-                  ),
-                  color: bgColor,
-                ),
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  child: SingleChildScrollView(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => new NewConsultation()));
+          },
+          label: Text("New Consultation"),
+        ),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex:5,
+                  child:Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              height: 120,
-                              width: 120,
-                              child: ClipOval(
-                                child: Image(
-                                  height: 20.0,
-                                  width: 20.0,
-                                  image: AssetImage('assets/user_icon.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Sonia rbii",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  width: 50,
-                                ),
-                                Text(
-                                  "Id :" + qrCodeResult,
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 12, right: 12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Age :",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "68 ans  ",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "Medecine  requested:",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "Panadol Extra ",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                "Physiol ",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                "Doctor responsible",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              TextButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.blue),
-                                ),
-                                onPressed: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => DocInfoPage(),
-                                    ),
-                                  ),
-                                },
-                                child: Text('Dr Maryem Hamdeni'),
-                              )
-                            ],
+                        children: [
+                          SizedBox(height: 110.0,),
+                          CircleAvatar(
+                            radius: 65.0,
+                            backgroundImage: AssetImage('assets/as.png'),
+                            backgroundColor: Colors.white,
                           ),
-                        ),
-                        SizedBox(
-                          height: 60,
-                          width: 150,
-                        ),
-                      ],
+                          SizedBox(height: 10.0,),
+                          Text('Erza Scarlet',
+                              style: TextStyle(
+                                color:Colors.white,
+                                fontSize: 20.0,
+                              )),
+                          SizedBox(height: 10.0,),
+                          Text('S Class Mage',
+                            style: TextStyle(
+                              color:Colors.white,
+                              fontSize: 15.0,
+                            ),)
+                        ]
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+
+                Expanded(
+                  flex:5,
+                  child: Container(
+                    color: Colors.grey[200],
+                    child: Center(
+                        child:Card(
+                            margin: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+                            child: Container(
+                                width: 310.0,
+                                height:290.0,
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Information",
+                                        style: TextStyle(
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w800,
+                                        ),),
+                                      Divider(color: Colors.grey[300],),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.home,
+                                            color: Colors.blueAccent,
+                                            size: 35,
+                                          ),
+                                          SizedBox(width: 20.0,),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              ElevatedButton(
+                                                child: Text(
+                                                  'Patients History',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Aleo',
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 18.0,
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext context) => new PatientsScreen()));
+                                                },
+                                              ),
+                                              // Text("",
+                                              //   style: TextStyle(
+                                              //     fontSize: 15.0,
+                                              //   ),),
+                                            ],
+                                          )
+
+                                        ],
+                                      ),
+                                      SizedBox(height: 20.0,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.auto_awesome,
+                                            color: Colors.blueAccent,
+                                            size: 35,
+                                          ),
+                                          SizedBox(width: 20.0,),
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              ElevatedButton(
+                                                child: Text(
+                                                  'Medical Tests    ',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Aleo',
+                                                      fontStyle: FontStyle.normal,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 18.0,
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext context) => new PatientsScreen()));
+                                                },
+                                              ),
+                                            ],
+                                          )
+
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                            )
+                        )
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+            Positioned(
+                top:MediaQuery.of(context).size.height*0.45,
+                left: 20.0,
+                right: 20.0,
+                child: Card(
+                    child: Padding(
+                      padding:EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                              child:Column(
+                                children: [
+                                  Text('Gender',
+                                    style: TextStyle(
+                                        color: Colors.blueAccent,
+                                        fontSize: 14.0
+                                    ),),
+                                  SizedBox(height: 5.0,),
+                                  Text("Male",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                    ),)
+                                ],
+                              )
+                          ),
+
+                          Container(
+                            child: Column(
+                                children: [
+                                  Text('Birthday',
+                                    style: TextStyle(
+                                        color: Colors.blueAccent,
+                                        fontSize: 14.0
+                                    ),),
+                                  SizedBox(height: 5.0,),
+                                  Text('April 7th',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                    ),)
+                                ]),
+                          ),
+
+                          Container(
+                              child:Column(
+                                children: [
+                                  Text('Age',
+                                    style: TextStyle(
+                                        color: Colors.blueAccent,
+                                        fontSize: 14.0
+                                    ),),
+                                  SizedBox(height: 5.0,),
+                                  Text('19 yrs',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                    ),)
+                                ],
+                              )
+                          ),
+                        ],
+                      ),
+                    )
+                )
+            )
+          ],
+
         ),
       );
     }

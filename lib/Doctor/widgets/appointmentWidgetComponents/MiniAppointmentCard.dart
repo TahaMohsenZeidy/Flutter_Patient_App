@@ -39,10 +39,15 @@ class MiniAppointmentCard extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                             color: Colors.grey[200],
-                            image: DecorationImage(
-                                image: CachedNetworkImageProvider(
-                                    appointmentData.imgLink),
-                                fit: BoxFit.fill),
+                            image:
+                            new DecorationImage(
+                              image: new ExactAssetImage('assets/user0.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                            // DecorationImage(
+                            //     image: CachedNetworkImageProvider(
+                            //         appointmentData.imgLink),
+                            //     fit: BoxFit.fill),
                             borderRadius: BorderRadius.circular(20)),
                         height: SizeConfig.safeBlockVertical * 8,
                         width: SizeConfig.safeBlockHorizontal * 15,

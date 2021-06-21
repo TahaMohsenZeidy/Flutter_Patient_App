@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:patient_app/Doctor/data/data2.dart';
 import 'package:patient_app/models/restaurant.dart';
-import 'package:patient_app/Doctor/screens/restaurant_screen.dart';
+import 'package:patient_app/Doctor/screens/one_history.dart';
 import 'package:patient_app/Doctor/sidebar/sidebar.dart';
 
 class PatientsScreen extends StatefulWidget with NavigationStates {
