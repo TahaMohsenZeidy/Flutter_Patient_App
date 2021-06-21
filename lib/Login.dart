@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
       if (user != null) {
-        currentUsr = user;
+        currentUser = user;
         Navigator.pushReplacementNamed(context, "/");
       }
     });

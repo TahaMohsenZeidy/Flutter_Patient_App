@@ -51,7 +51,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     //   print(element);
     // });
     return FutureBuilder<DocumentSnapshot>(
-      future: appointmentsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
+      future: appointementsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
 

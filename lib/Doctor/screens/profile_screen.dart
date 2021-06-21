@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print(currentDoc.toString());
     }
     _email = user.email;
-    currentUsr = user;
+    currentUser = user;
     _yourPostsPageController =
         PageController(initialPage: 0, viewportFraction: 0.8);
     _favoritesPageController =

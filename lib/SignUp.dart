@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) async {
       if (user != null) {
-        currentUsr = user;
+        currentUser = user;
         Navigator.pushReplacementNamed(context, "/");
       }
     });
@@ -48,7 +48,7 @@ class _SignUpState extends State<SignUp> {
               email: _email, password: _password);
           if (user != null) {
             await _auth.currentUser.updateProfile(displayName: _role);
-            String role = currentUsr.displayName;
+            String role = currentUser.displayName;
             if (role == "Doctor") {}
             // await Navigator.pushReplacementNamed(context,"/") ;
 

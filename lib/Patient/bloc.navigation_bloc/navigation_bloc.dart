@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:patient_app/Patient/Generate.dart';
 import 'package:patient_app/Patient/clientAppointment.dart';
 
 import 'package:patient_app/Patient/ProfilePage.dart';
@@ -10,6 +11,8 @@ enum NavigationEvents {
   ProfileClickedEvent,
   EditProfileClickedEvent,
   HistoryClickedEvent,
+  QrCodeClickedEvent
+
 }
 
 abstract class NavigationStates {}
@@ -33,6 +36,10 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.HistoryClickedEvent:
         yield Patient_View_History();
+        break;
+
+      case NavigationEvents.QrCodeClickedEvent:
+        yield GeneratePage();
         break;
     }
   }

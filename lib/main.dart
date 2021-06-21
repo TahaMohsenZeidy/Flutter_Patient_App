@@ -16,7 +16,7 @@ final diseasesRef = FirebaseFirestore.instance.collection("Disease");
 final medTestRef = FirebaseFirestore.instance.collection("medical tests");
 final medImageRef = FirebaseFirestore.instance.collection("Medical image");
 final medicineRef = FirebaseFirestore.instance.collection("Diseases");
-var currentUsr = FirebaseAuth.instance.currentUser;
+var currentUser = FirebaseAuth.instance.currentUser;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

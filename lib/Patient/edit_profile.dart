@@ -102,7 +102,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      patientsRef.doc(currentUsr.uid).set({
+                      patientsRef.doc(currentUser.uid).set({
                         "username": label_vlaue["name"],
                         "email": label_vlaue["email"],
                         "password": label_vlaue["pass"],
@@ -111,7 +111,7 @@ class _EditProfileState extends State<EditProfile> {
                         "description": label_vlaue["desc"],
                         "age": label_vlaue["age"],
                       }).then((value) => print(
-                          "uploaded successfully user : ${currentUsr.uid} ! ${label_vlaue["name"]}"));
+                          "uploaded successfully user : ${currentUser.uid} ! ${label_vlaue["name"]}"));
                     },
                     child: Text("SAVE",
                         style: TextStyle(

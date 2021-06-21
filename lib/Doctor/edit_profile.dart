@@ -11,7 +11,7 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   bool isObscurePassword = true;
   Map label_vlaue = Map<String, String>();
-  String email = currentUsr.email;
+  String email = currentUser.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +103,7 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      doctorsRef.doc(currentUsr.uid).set({
+                      doctorsRef.doc(currentUser.uid).set({
                         "username": label_vlaue["name"],
                         "email": label_vlaue["name"],
                         "password": label_vlaue["pass"],

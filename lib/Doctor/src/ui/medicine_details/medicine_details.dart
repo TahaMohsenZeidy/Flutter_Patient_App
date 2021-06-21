@@ -47,7 +47,7 @@ class MedicineDetails extends StatelessWidget {
                   top: 25,
                 ),
                 child: Container(
-                  width: 80,
+                  width: 250,
                   height: 70,
                   child: FlatButton(
                     color: Color(0xFF00897B),
@@ -61,7 +61,7 @@ class MedicineDetails extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w900,
                         ),
                       ),
                     ),

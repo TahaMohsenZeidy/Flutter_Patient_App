@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_app/notifications/notifications.dart';
 import 'package:patient_app/Doctor/src/common/convert_time.dart';
@@ -11,6 +12,8 @@ import 'package:patient_app/Doctor/src/ui/new_entry/new_entry_bloc.dart';
 import 'package:patient_app/Doctor/src/ui/success_screen/success_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:patient_app/Doctor/scan_generate_QR/Scan.dart';
 
 class NewEntry extends StatefulWidget {
   @override
@@ -18,9 +21,43 @@ class NewEntry extends StatefulWidget {
 }
 
 class _NewEntryState extends State<NewEntry> {
+  final controllerDisName = TextEditingController();
+
+  User user = FirebaseAuth.instance.currentUser;
+
+  get id => user.uid;
+  addingDisease() {
+    FirebaseFirestore.instance
+        .collection('Diseases')
+        .doc(ScanPage.qrCodeResult)
+        .set({
+      'disName': controllerDisName.text,
+      'medName': nameController.text,
+      'medTime': dosageController.text,
+      'medType':
+          _newEntryBloc.selectedMedicineType.value.toString().substring(13),
+      'interval': _newEntryBloc.selectedInterval$.value,
+      'IdPatient': ScanPage.qrCodeResult,
+      'IdDoctor': id,
+    });
+  }
+
+  TextEditingController typeController;
   TextEditingController nameController;
   TextEditingController dosageController;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  Future instantNofitication() async {
+    var android = AndroidNotificationDetails("id", "channel", "description");
+
+    var ios = IOSNotificationDetails();
+
+    var platform = new NotificationDetails(android: android, iOS: ios);
+
+    await flutterLocalNotificationsPlugin.show(
+        0, "your doctor has added medecine", "Tap to see medecines", platform,
+        payload: "");
+  }
+
   NewEntryBloc _newEntryBloc;
 
   GlobalKey<ScaffoldState> _scaffoldKey;
@@ -28,7 +65,9 @@ class _NewEntryState extends State<NewEntry> {
   void dispose() {
     super.dispose();
     nameController.dispose();
+    typeController.dispose();
     dosageController.dispose();
+    controllerDisName.dispose();
     _newEntryBloc.dispose();
   }
 
@@ -37,6 +76,8 @@ class _NewEntryState extends State<NewEntry> {
     _newEntryBloc = NewEntryBloc();
     nameController = TextEditingController();
     dosageController = TextEditingController();
+    typeController = TextEditingController();
+
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     _scaffoldKey = GlobalKey<ScaffoldState>();
     initializeNotifications();
@@ -74,20 +115,36 @@ class _NewEntryState extends State<NewEntry> {
             ),
             children: <Widget>[
               PanelTitle(
-                title: "Medicine Name",
+                title: "Diseases",
                 isRequired: true,
               ),
               TextFormField(
                 maxLength: 12,
+                controller: controllerDisName,
                 style: TextStyle(
                   fontSize: 16,
                 ),
-                controller: nameController,
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
               ),
+              PanelTitle(
+                title: "Medicine Name",
+                isRequired: true,
+              ),
+              TextFormField(
+                controller: nameController,
+                maxLength: 12,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+                textCapitalization: TextCapitalization.words,
+                decoration: InputDecoration(
+                  border: UnderlineInputBorder(),
+                ),
+              ),
+
               PanelTitle(
                 title: "Dosage in mg",
                 isRequired: false,
@@ -180,6 +237,8 @@ class _NewEntryState extends State<NewEntry> {
                       ),
                     ),
                     onPressed: () {
+                      addingDisease();
+                      instantNofitication();
                       Notifications notifications = new Notifications();
                       notifications.showNotification("add medicine", "medecine",
                           2, 1, flutterLocalNotificationsPlugin);

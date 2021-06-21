@@ -143,6 +143,15 @@ class _SideBarState extends State<SideBar>
                         },
                       ),
                       MenuItem(
+                        icon: Icons.archive,
+                        title: "Show Qrcode",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.QrCodeClickedEvent);
+                        },
+                      ),
+                      MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
                       ),
