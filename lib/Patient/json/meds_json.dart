@@ -4,12 +4,12 @@ const List budget_json = [
   {
     "name": "Consultation1",
     "tag": "Progress",
-    "label_percentage": "45%",
-    "percentage": 0.45,
+    "label_percentage": "0%",
+    "percentage": 0,
     "color": green
   },
   {
-    "name": "Consultation 1",
+    "name": "Consultation 2",
     "tag": "Progress",
     "label_percentage": "70%",
     "percentage": 0.7,

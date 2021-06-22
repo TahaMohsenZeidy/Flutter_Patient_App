@@ -3,6 +3,7 @@ import 'package:patient_app/Patient//json/day_month.dart';
 import 'package:patient_app/Patient/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class BudgetPage extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class BudgetPage extends StatefulWidget {
 
 class _BudgetPageState extends State<BudgetPage> {
   int activeDay = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,25 @@ class _BudgetPageState extends State<BudgetPage> {
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-
+    var popup = Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Consultation",
+      desc: "Consultation Accepted           Date: 15/12/2022",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Okay",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        )
+      ],
+    );
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -126,96 +146,99 @@ class _BudgetPageState extends State<BudgetPage> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
                 children: List.generate(budget_json.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: grey.withOpacity(0.01),
-                          spreadRadius: 10,
-                          blurRadius: 3,
-                          // changes position of shadow
-                        ),
-                      ]),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 25, right: 25, bottom: 25, top: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          budget_json[index]['name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color(0xff67727d).withOpacity(0.6)),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  budget_json[index]['tag'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 3),
-                                  child: Text(
-                                    budget_json[index]['label_percentage'],
+              return GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: grey.withOpacity(0.01),
+                            spreadRadius: 10,
+                            blurRadius: 3,
+                            // changes position of shadow
+                          ),
+                        ]),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 25, right: 25, bottom: 25, top: 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            budget_json[index]['name'],
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Color(0xff67727d).withOpacity(0.6)),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    budget_json[index]['tag'],
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color:
-                                            Color(0xff67727d).withOpacity(0.6)),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Stack(
-                          children: [
-                            Container(
-                              width: (size.width - 40),
-                              height: 4,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Color(0xff67727d).withOpacity(0.1)),
-                            ),
-                            Container(
-                              width: (size.width - 40) *
-                                  budget_json[index]['percentage'],
-                              height: 4,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: budget_json[index]['color']),
-                            ),
-                          ],
-                        )
-                      ],
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 3),
+                                    child: Text(
+                                      budget_json[index]['label_percentage'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          color: Color(0xff67727d)
+                                              .withOpacity(0.6)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 3),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Stack(
+                            children: [
+                              Container(
+                                width: (size.width - 40),
+                                height: 4,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Color(0xff67727d).withOpacity(0.1)),
+                              ),
+                              Container(
+                                width: (size.width - 40) *
+                                    budget_json[index]['percentage'],
+                                height: 4,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: budget_json[index]['color']),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
+                onTap: () => popup.show(),
               );
             })),
           )

@@ -60,6 +60,7 @@ dependencies:
   path: ^1.8.0
   flutter_svg: ^0.22.0
   file_picker: ^3.0.2+2
+  rflutter_alert: ^2.0.2
   firebase_storage: ^8.1.1
 
 
