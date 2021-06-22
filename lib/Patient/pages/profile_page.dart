@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/Patient/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:patient_app/data/data.dart';
 import 'package:patient_app/models/user_model.dart';
 import 'package:patient_app/Patient/sidebar/sidebar.dart';
 import 'package:patient_app/Patient/profile_clipper.dart';
@@ -75,7 +76,7 @@ class _ProfileScreenState extends State<ProfilePage> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                "Patient",
+                currentUser.name,
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
