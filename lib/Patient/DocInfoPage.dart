@@ -355,7 +355,7 @@ class _docInfoPageState extends State<docInfoPage> {
               //TODO : Upload appointements To The Data
               await addAppt("Comment", "4", "aze", "aer", "azr", "aze", "aezr");
 
-              final snackBar = SnackBar(content: Text('Appointment Sent '));
+              final snackBar = SnackBar(content: Text('Appointment Sent Successfully'));
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }),
