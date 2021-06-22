@@ -407,3 +407,4 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
     });
   }
 }
+

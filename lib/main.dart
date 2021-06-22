@@ -39,3 +39,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// intro methode resultat analyse discussion et conc ==> powerpoint ==> boxes
+
+// split horizentale ==> less text ==> more schemas ==> pas d'encombrement
+
+// self-contained

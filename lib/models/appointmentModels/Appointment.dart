@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'patient.dart';
 
 class Appointment extends Patient {
@@ -15,5 +17,23 @@ class Appointment extends Patient {
   String appoitmentDate;
   String appoitmentTime;
   String appoitmentComment;
-  bool isFuture;
+  bool isFuture=true;
+
+
+  static Appointment getAppointmentFromDoc( QueryDocumentSnapshot data){
+    print(data['userImg']);
+
+    return Appointment(
+      patientName: "${data["firstName"]}",
+      patienSurname: "${data["lastName"]}",
+      appoitmentComment: "${data["comment"]}",
+      appoitmentDate: "${data['date']}",
+      appoitmentTime: "${data['time']}",
+      phoneNumber: "${data["number"]}",
+      imgLink: "assets/${data['userImg']}",
+    );
+
+  }
+
+
 }
