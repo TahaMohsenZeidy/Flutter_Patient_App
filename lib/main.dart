@@ -14,8 +14,9 @@ var docsRef = FirebaseFirestore.instance.collection("doctors");
 var appointementsRef = FirebaseFirestore.instance.collection("Appointments");
 final diseasesRef = FirebaseFirestore.instance.collection("Disease");
 final medTestRef = FirebaseFirestore.instance.collection("medical tests");
-
+final radiologistsRef = FirebaseFirestore.instance.collection("radiologists");
 final medicineRef = FirebaseFirestore.instance.collection("Diseases");
+final analystRef = FirebaseFirestore.instance.collection("Analyst");
 var currentUser = FirebaseAuth.instance.currentUser;
 
 Future<void> main() async {

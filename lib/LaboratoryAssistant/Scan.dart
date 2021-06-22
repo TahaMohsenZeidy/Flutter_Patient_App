@@ -139,6 +139,7 @@ class _ScanPageState extends State<ScanPage> {
 
             if (snapshot.connectionState == ConnectionState.done) {
               Map<String, dynamic> data1 = snapshot.data.data();
+
               final fileName =
                   file != null ? basename(file.path) : 'No File Selected';
               return FutureBuilder<DocumentSnapshot>(

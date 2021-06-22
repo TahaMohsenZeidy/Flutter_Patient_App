@@ -133,6 +133,19 @@ class _SideBarState extends State<SideBar>
                               .add(NavigationEvents.ProfileScreenClickedEvent);
                         },
                       ),
+                      MenuItem(
+                        icon: Icons.face,
+                        title: "  Profile ",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context)
+                              .add(NavigationEvents.ProfilePageClickedEvent);
+                        },
+                      ),
+                      MenuItem(
+                        icon: Icons.logout,
+                        title: " Logout",
+                      ),
                       Divider(
                         height: 44,
                         thickness: 0.5,

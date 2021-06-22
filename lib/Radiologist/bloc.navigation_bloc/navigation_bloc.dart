@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:patient_app/Radiologist/edit_profile.dart';
 
 import 'package:patient_app/Radiologist/profile_screen.dart';
 
@@ -13,6 +14,7 @@ enum NavigationEvents {
   NewCaseClickedEvent,
 
   EditProfileClickedEvent,
+  ProfilePageClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -31,9 +33,11 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.NewCaseClickedEvent:
         yield ScanPage();
         break;
-
       case NavigationEvents.EditProfileClickedEvent:
-        yield ProfileScreen();
+        yield EditProfile();
+        break;
+      case NavigationEvents.ProfilePageClickedEvent:
+        yield ProfilePage();
         break;
     }
   }

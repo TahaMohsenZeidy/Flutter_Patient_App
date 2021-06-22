@@ -1,13 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:patient_app/LaboratoryAssistant/profile_screen.dart';
+import 'package:patient_app/LaboratoryAssistant/edit_profile.dart';
 
 import 'package:patient_app/LaboratoryAssistant/hospital-dashboard-home.dart';
 import 'package:patient_app/LaboratoryAssistant/Scan.dart';
+import 'package:patient_app/LaboratoryAssistant/profile_screen.dart';
 
 enum NavigationEvents {
   DashboardClickedEvent,
   ProfileScreenClickedEvent,
   NewCaseClickedEvent,
+  ProfilePageClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -25,9 +27,12 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.NewCaseClickedEvent:
         yield ScanPage();
         break;
+      case NavigationEvents.ProfilePageClickedEvent:
+        yield ProfilePage();
+        break;
 
       case NavigationEvents.ProfileScreenClickedEvent:
-        yield ProfileScreen();
+        yield EditProfile();
         break;
     }
   }
