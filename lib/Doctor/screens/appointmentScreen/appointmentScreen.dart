@@ -37,7 +37,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     finalList = [];
   }
 
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -54,7 +53,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       future: appointementsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-
         if (snapshot.hasError) {
           return Text("Something went wrong");
         }
@@ -102,28 +100,28 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             body: isLoading
                 ? SizedBox()
                 : Container(
-              color: Color(0xffF3F6FF).withOpacity(0.134),
-              child: AnimationLimiter(
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: finalList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (isFirstTime == false) {
-                      setState(() {});
-                    }
+                    color: Color(0xffF3F6FF).withOpacity(0.134),
+                    child: AnimationLimiter(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: finalList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (isFirstTime == false) {
+                            setState(() {});
+                          }
 
-                    return AnimationConfiguration.staggeredList(
-                      position: index,
-                      duration: Duration(milliseconds: 375),
-                      child: SlideAnimation(
-                        verticalOffset: -20,
-                        child: FadeInAnimation(child: finalList[index]),
+                          return AnimationConfiguration.staggeredList(
+                            position: index,
+                            duration: Duration(milliseconds: 375),
+                            child: SlideAnimation(
+                              verticalOffset: -20,
+                              child: FadeInAnimation(child: finalList[index]),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
-            ),
+                    ),
+                  ),
           );
         }
         return Text("loading");
@@ -132,7 +130,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
   }
 
   Future<bool> initiateList() async {
-
     //First we work on the header of the list
     topHeader.add(
       Padding(
@@ -267,13 +264,14 @@ class AppointmentManager {
     // });
     List<String> IDs = [];
     print("here is the id");
-    FirebaseFirestore.instance.collection('Appointments').get().then((QuerySnapshot querySnapshot) => {
-      querySnapshot.docs.forEach((doc) {
-      IDs.add(doc.id.toString());
-    })
-    });
+    FirebaseFirestore.instance
+        .collection('Appointments')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                IDs.add(doc.id.toString());
+              })
+            });
     return IDs;
   }
 }
-
-

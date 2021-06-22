@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_app/data/data.dart';
 import 'package:patient_app/notifications/notifications.dart';
 import 'package:patient_app/Doctor/src/common/convert_time.dart';
 import 'package:patient_app/Doctor/src/global_bloc.dart';
@@ -54,7 +55,10 @@ class _NewEntryState extends State<NewEntry> {
     var platform = new NotificationDetails(android: android, iOS: ios);
 
     await flutterLocalNotificationsPlugin.show(
-        0, "your doctor has added medecine", "Tap to see medecines", platform,
+        0,
+        currentUser.name + " has added medecine",
+        "Tap to see medecines",
+        platform,
         payload: "");
   }
 

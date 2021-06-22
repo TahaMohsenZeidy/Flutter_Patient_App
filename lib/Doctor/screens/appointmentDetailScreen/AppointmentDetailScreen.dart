@@ -1,6 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:patient_app/Doctor/scan_generate_QR/Scan.dart';
+import 'package:patient_app/Doctor/screens/appointmentScreen/appointmentScreen.dart';
+import 'package:patient_app/Patient/clientAppointment.dart';
+import 'package:patient_app/data/data.dart';
+
 import 'package:patient_app/models/appointmentModels/Appointment.dart';
 import 'package:patient_app/Doctor/widgets/appointmentWidgetComponents/ActionButton.dart';
 
@@ -17,6 +22,60 @@ class AppointmentDetailScreen extends StatefulWidget {
 
 class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
     with SingleTickerProviderStateMixin {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    await Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => MakeAnAppointment()),
+    );
+  }
+
+  initializeNotifications() async {
+    var initializationSettingsAndroid =
+        new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future AcceptInstantNofitication() async {
+    var android = AndroidNotificationDetails("id", "channel", "description");
+
+    var ios = IOSNotificationDetails();
+
+    var platform = new NotificationDetails(android: android, iOS: ios);
+
+    await flutterLocalNotificationsPlugin.show(
+        0,
+        "Dr" + " " + currentUser.name + "   has accepted  you ",
+        "Tap to return ",
+        platform,
+        payload: "");
+  }
+
+  Future DeclineInstantNofitication() async {
+    var android = AndroidNotificationDetails("id", "channel", "description");
+
+    var ios = IOSNotificationDetails();
+
+    var platform = new NotificationDetails(android: android, iOS: ios);
+
+    await flutterLocalNotificationsPlugin.show(
+        0,
+        "Dr" +
+            " " +
+            currentUser.name +
+            "   has declined  you , you have to choose another time ",
+        "Tap to return ",
+        platform,
+        payload: "");
+  }
+
   bool isContainerCollapsed = true;
   bool isDateAndTimeVisible = false;
   bool isUserProfileImageVisible = false;
@@ -29,6 +88,8 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
   void initState() {
     super.initState();
     initiateAnimation();
+    initializeNotifications();
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     animationController = new AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 275),
@@ -94,12 +155,14 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
         opacity: isContainerCollapsed ? 0 : 1,
         child: ActionButton(
           onAcceptPressed: () {
+            AcceptInstantNofitication();
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => new ScanPage()));
           },
           onDecinePressed: () {
+            DeclineInstantNofitication();
             reverseAnimation();
           },
         ),
@@ -171,7 +234,8 @@ class _AppointmentDetailScreenState extends State<AppointmentDetailScreen>
                               child: Container(
                                 decoration: new BoxDecoration(
                                   image: new DecorationImage(
-                                    image: new ExactAssetImage('assets/user0.jpg'),
+                                    image:
+                                        new ExactAssetImage('assets/user0.jpg'),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
