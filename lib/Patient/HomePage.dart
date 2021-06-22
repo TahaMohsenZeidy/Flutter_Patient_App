@@ -229,8 +229,8 @@ class _MyFirstPageState extends State<MyFirstPage> {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(3),
-                  height: 65,
-                  width: 60,
+                  height: 55,
+                  width: 50,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(

@@ -276,7 +276,7 @@ class _docInfoPageState extends State<docInfoPage> {
   }
 
   Future<void> addAppt(
-      comment, date, firstName, lastName, imgLink, number, time, docId, patId) {
+      comment, date, firstName, lastName, number, time, userImg) {
     // Call the user's CollectionReference to add a new user
     return appointementsRef
         .add({
@@ -284,12 +284,9 @@ class _docInfoPageState extends State<docInfoPage> {
           'date': date, // Stokes and Sons
           'firstName': firstName, // 42
           'lastName': lastName, // 42
-          'imgLink': imgLink, // 42
           'number': number, // 42
           'time': time,
-          'docId': docId,
-          'patId': patId,
-          // 42
+          'userImg': userImg,
         })
         .then((value) => print("Appointement Added"))
         .catchError((error) => print("Failed to add appointement: $error"));
@@ -359,16 +356,8 @@ class _docInfoPageState extends State<docInfoPage> {
             // When the child is tapped, show a snackbar.
             onTap: () async {
               //TODO : Upload appointements To The Data
-              await addAppt(
-                  "Comment",
-                  "04/04/2022",
-                  data.currentUser.name,
-                  "Lastname",
-                  "https://firebasestorage.googleapis.com/v0/b/patient-app-314908.appspot.com/o/symbols.png?alt=media&token=f0687731-fe80-46fa-9497-4de944866f5a",
-                  "20986236",
-                  "12:30",
-                  widget.docId,
-                  main.currentUser.uid);
+              await addAppt("Comment", "15/12/2022", data.currentUser.name,
+                  "Lastname", "20986236", "12:30", "as.png");
 
               final snackBar =
                   SnackBar(content: Text('Appointment Sent Successfully'));
