@@ -165,11 +165,17 @@ class _EditProfileState extends State<EditProfile> {
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),
-          onSubmitted: (value) {
+          onChanged: (value) async {
             print("The value entered is : $value");
-            label_vlaue.putIfAbsent(labelText, () => value);
+            label_vlaue.update(
+              labelText,
+                  (existingValue) => value,
+              ifAbsent: () => value,
+            );
+            print("Current text value is : $labelText");
             print(label_vlaue);
-          }),
+          }
+        ),
     );
   }
 }
