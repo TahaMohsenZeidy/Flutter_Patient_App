@@ -27,7 +27,7 @@ class _BudgetPageState extends State<BudgetPage> {
       context: context,
       type: AlertType.success,
       title: "Consultation",
-      desc: "Consultation Accepted           Date: 15/12/2022",
+      desc: "Appointment Accepted           Date: 15/12/2022",
       buttons: [
         DialogButton(
           child: Text(
