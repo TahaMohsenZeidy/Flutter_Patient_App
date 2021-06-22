@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:patient_app/Doctor/data/data.dart' as data;
 import 'package:patient_app/Patient/clientAppointment.dart';
 import 'package:patient_app/colorScheme.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_app/data/data.dart';
-import 'package:patient_app/main.dart';
+import 'package:patient_app/main.dart' as main;
+
+import '../main.dart';
 
 class DocInfoPage extends StatelessWidget {
   @override
@@ -273,7 +276,7 @@ class _docInfoPageState extends State<docInfoPage> {
   }
 
   Future<void> addAppt(
-      comment, date, firstName, lastName, imgLink, number, time) {
+      comment, date, firstName, lastName, imgLink, number, time, docId, patId) {
     // Call the user's CollectionReference to add a new user
     return appointementsRef
         .add({
@@ -283,7 +286,10 @@ class _docInfoPageState extends State<docInfoPage> {
           'lastName': lastName, // 42
           'imgLink': imgLink, // 42
           'number': number, // 42
-          'time': time // 42
+          'time': time,
+          'docId': docId,
+          'patId': patId,
+          // 42
         })
         .then((value) => print("Appointement Added"))
         .catchError((error) => print("Failed to add appointement: $error"));
@@ -353,9 +359,19 @@ class _docInfoPageState extends State<docInfoPage> {
             // When the child is tapped, show a snackbar.
             onTap: () async {
               //TODO : Upload appointements To The Data
-              await addAppt("Comment", "4", "aze", "aer", "azr", "aze", "aezr");
+              await addAppt(
+                  "Comment",
+                  "04/04/2022",
+                  data.currentUser.name,
+                  "Lastname",
+                  "https://firebasestorage.googleapis.com/v0/b/patient-app-314908.appspot.com/o/symbols.png?alt=media&token=f0687731-fe80-46fa-9497-4de944866f5a",
+                  main.currentUser.phoneNumber,
+                  "12:30",
+                  widget.docId,
+                  main.currentUser.uid);
 
-              final snackBar = SnackBar(content: Text('Appointment Sent Successfully'));
+              final snackBar =
+                  SnackBar(content: Text('Appointment Sent Successfully'));
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }),
