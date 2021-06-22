@@ -4,6 +4,7 @@ import 'package:patient_app/data/data.dart';
 import 'package:patient_app/models/user_model.dart';
 import 'package:patient_app/Patient/sidebar/sidebar.dart';
 import 'package:patient_app/Patient/profile_clipper.dart';
+import 'package:patient_app/main.dart' as main;
 
 class ProfilePage extends StatefulWidget with NavigationStates {
   final User user;
@@ -76,7 +77,7 @@ class _ProfileScreenState extends State<ProfilePage> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                currentUser.name,
+                main.currentUser.displayName,
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
