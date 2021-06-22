@@ -365,7 +365,7 @@ class _docInfoPageState extends State<docInfoPage> {
                   data.currentUser.name,
                   "Lastname",
                   "https://firebasestorage.googleapis.com/v0/b/patient-app-314908.appspot.com/o/symbols.png?alt=media&token=f0687731-fe80-46fa-9497-4de944866f5a",
-                  main.currentUser.phoneNumber,
+                  "20986236",
                   "12:30",
                   widget.docId,
                   main.currentUser.uid);
