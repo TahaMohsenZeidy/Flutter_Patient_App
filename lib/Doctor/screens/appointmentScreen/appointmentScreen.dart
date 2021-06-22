@@ -52,7 +52,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
 
   fetchData() async {
     List<Appointment> apps = await fetchCloudData();
-
     futureAppointment=[];
     pastAppointments = [];
     setState(() {
@@ -97,20 +96,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       initiateList();
       isFirstTime = true;
     }
-<<<<<<< Updated upstream
-    // var ids = AppointmentManager.getAllAppointmentIDs();
-    // print("tawa bech yebda jaw");
-    // ids.forEach((element){
-    //   print(element);
-    // });
-    return FutureBuilder<DocumentSnapshot>(
-      future: appointementsRef.doc("Kj84RycRkrldJRXrP1Z2").get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text("Something went wrong");
-        }
-=======
     return Scaffold(
       body: Column(
         children: [
@@ -124,8 +109,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     );
 
   }
->>>>>>> Stashed changes
-
   buildHeader(){
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, bottom: 7, top: 100),
@@ -140,77 +123,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   fontSize: SizeConfig.horizontalBloc * 7, color: Colors.black45),),
             TextButton.icon(onPressed: fetchData, icon: Icon(Icons.refresh), label: Text("")),
           ]
+    )));
 
-<<<<<<< Updated upstream
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data = snapshot.data.data();
-          // return Text("Full Name: ${data['full name']} ${data['Gender']}");
-          return Scaffold(
-            backgroundColor: Colors.grey[100],
-            appBar: AppBar(
-              backgroundColor: Color(0xffF3F6FF).withOpacity(0.134),
-              elevation: 0,
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.sync,
-                    color: Colors.black54,
-                    size: SizeConfig.horizontalBloc * 8,
-                  ),
-                  onPressed: () async {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    topHeader..clear();
-                    currentAppointment..clear();
-                    midHeader..clear();
-                    futureAppointment.clear();
-                    finalList..clear();
-                    AppointmentManager.appointmentList.clear();
-                    AppointmentManager.generateAppointmentList(data);
-                    initiateList();
-                    Future.delayed(Duration(milliseconds: 375), () {
-                      isLoading = false;
-                      setState(() {});
-                    });
-                  },
-                )
-              ],
-            ),
-            drawer: SideBar(),
-            body: isLoading
-                ? SizedBox()
-                : Container(
-                    color: Color(0xffF3F6FF).withOpacity(0.134),
-                    child: AnimationLimiter(
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: finalList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (isFirstTime == false) {
-                            setState(() {});
-                          }
-
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: Duration(milliseconds: 375),
-                            child: SlideAnimation(
-                              verticalOffset: -20,
-                              child: FadeInAnimation(child: finalList[index]),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-          );
-        }
-        return Text("loading");
-      },
-=======
-        ),
-      ),
-    );
   }
 
   buildDocName(){
@@ -245,7 +159,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               fontSize: SizeConfig.horizontalBloc * 5, color: Colors.black45),
         ),
       ),
->>>>>>> Stashed changes
     );
   }
 
@@ -376,31 +289,8 @@ class AppointmentManager {
   }
 
   static getAllAppointmentIDs() async {
-    // FirebaseFirestore.instance
-    //     .collection('Appointments')
-    //     .get()
-    //     .then((QuerySnapshot querySnapshot) {
-    //   querySnapshot.docs.forEach((doc) {
-    //     print(doc["firstName"]);
-    //   });
-    // });
-<<<<<<< Updated upstream
-    List<String> IDs = [];
-    print("here is the id");
-    FirebaseFirestore.instance
-        .collection('Appointments')
-        .get()
-        .then((QuerySnapshot querySnapshot) => {
-              querySnapshot.docs.forEach((doc) {
-                IDs.add(doc.id.toString());
-              })
-            });
-    return IDs;
-=======
     FirebaseFirestore.instance.collection('Appointments').get().then((QuerySnapshot querySnapshot) => {
       querySnapshot.docs.forEach((doc) {
-
-
         String img = "assets/" + doc['userImg'];
         appointmentList.add(Appointment(
           patientName: "${doc["firstName"]}",
@@ -414,13 +304,10 @@ class AppointmentManager {
       print(doc.data());
       print(appointmentList.length);
         appointmentList[0].isFuture = false;
-
         //appointmentList.add(Appointment.getAppointmentFromDoc(doc.data()));
     })
 
     });
 
-
->>>>>>> Stashed changes
   }
 }
