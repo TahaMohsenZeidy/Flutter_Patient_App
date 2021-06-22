@@ -1,15 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../main.dart';
+import 'package:patient_app/Doctor/scan_generate_QR/Scan.dart';
+
 import 'bottomAnimation.dart';
 
 final controllerMedImage = TextEditingController();
 final controllerMedTest = TextEditingController();
-final controllerDisName = TextEditingController();
+
 final controllerDesc = TextEditingController();
 FirebaseAuth _auth = FirebaseAuth.instance;
+
 class AddDisease extends StatefulWidget {
   @override
   _AddDiseaseState createState() => _AddDiseaseState();
@@ -20,12 +24,39 @@ class _AddDiseaseState extends State<AddDisease> {
   bool validDesc = false;
   bool validMedImage = false;
   bool validMedTest = false;
+  User user = FirebaseAuth.instance.currentUser;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  Future instantNofitication() async {
+    var android = AndroidNotificationDetails("id", "channel", "description");
+
+    var ios = IOSNotificationDetails();
+
+    var platform = new NotificationDetails(android: android, iOS: ios);
+
+    await flutterLocalNotificationsPlugin.show(
+        0, "your doctor has added new tests", "Tap to see tests", platform,
+        payload: "");
+  }
+
+  get id => user.uid;
+
+  addingDisease() {
+    FirebaseFirestore.instance
+        .collection('medical tests')
+        .doc(ScanPage.qrCodeResult)
+        .set({
+      'Desc': controllerDesc.text,
+      'medTest': controllerMedTest.text,
+      'medImage': controllerMedImage.text,
+      'IdDoctor': id,
+      'IdPatient': ScanPage.qrCodeResult,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
 
     final medDescTF = TextField(
       keyboardType: TextInputType.multiline,
@@ -93,33 +124,17 @@ class _AddDiseaseState extends State<AddDisease> {
     controllerClear() {
       controllerMedImage.clear();
       controllerMedTest.clear();
-      controllerDisName.clear();
+
       controllerDesc.clear();
-    }
 
-    addingDisease() {
-
-      var id = "XghHOeNbye34gG11yG9n";
-      print("rani lenna");
-
-      // diseasesRef.add({
-      //   'doctor_id': _auth.currentUser.uid,
-      //   'patient_id': "l patient li bech tescanih",
-      //   'disease_name': controllerDisName.text,
-      //   'disease_desc': controllerDesc.text,
-      //   'MedImage': controllerMedImage.text,
-      //   'MedTest': controllerMedTest.text,
-      // });
       controllerClear();
-      // Toast.show('Added Successfully!', context,
-      //     backgroundRadius: 5, backgroundColor: Colors.blue, duration: 3);
+
       Fluttertoast.showToast(
-          msg: 'Added Successfully',
+          msg: '  Edded successfully ',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.green,
-          textColor: Colors.red
-      );
+          backgroundColor: Colors.red,
+          textColor: Colors.yellow);
       Navigator.pop(context);
     }
 
@@ -128,7 +143,12 @@ class _AddDiseaseState extends State<AddDisease> {
         height: 50,
         child: RaisedButton(
           onPressed: () {
+            instantNofitication();
+            addingDisease();
             setState(() {
+              controllerDesc.text.isEmpty
+                  ? validDesc = true
+                  : validDesc = false;
               controllerMedImage.text.isEmpty
                   ? validMedImage = true
                   : validMedImage = false;
@@ -136,18 +156,15 @@ class _AddDiseaseState extends State<AddDisease> {
                   ? validMedTest = true
                   : validMedTest = false;
             });
-            !validDisName &
-                    !validDesc &
-                    !validMedTest &
-                    !validMedImage
+
+            !validDesc & !validMedTest & !validMedImage
                 ? addingDisease()
                 : Fluttertoast.showToast(
-                msg: 'Profile Updated Successfully',
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                backgroundColor: Colors.green,
-                textColor: Colors.red
-            );
+                    msg: '  Empty filed ',
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.yellow);
           },
           color: Colors.blueAccent,
           shape: StadiumBorder(),

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:patient_app/Doctor/src/models/medicine.dart';
+
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter/material.dart';
 

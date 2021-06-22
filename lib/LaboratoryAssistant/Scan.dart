@@ -3,15 +3,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import 'package:path/path.dart';
 import 'package:patient_app/LaboratoryAssistant/bloc.navigation_bloc/navigation_bloc.dart';
-
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:flutter/material.dart';
-
 import '../main.dart';
-
 import '../sizeConfig.dart';
 import 'UploadFile.dart';
 import 'Buttom_widget.dart';
@@ -130,7 +126,7 @@ class _ScanPageState extends State<ScanPage> {
       );
     } else {
       return FutureBuilder<DocumentSnapshot>(
-          future: medTestRef.doc("OdPejV4O2bb1Mxe0fwHU").get(),
+          future: medTestRef.doc(qrCodeResult).get(),
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
@@ -423,7 +419,7 @@ class _ScanPageState extends State<ScanPage> {
                                             height: 110.0,
                                           ),
                                           Text(
-                                            'med tests',
+                                            'medical  tests requested ',
                                             style: TextStyle(
                                                 color: Colors.blueAccent,
                                                 fontSize: 14.0),

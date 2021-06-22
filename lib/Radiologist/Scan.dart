@@ -131,7 +131,7 @@ class _ScanPageState extends State<ScanPage> {
       );
     } else {
       return FutureBuilder<DocumentSnapshot>(
-          future: medTestRef.doc("OdPejV4O2bb1Mxe0fwHU").get(),
+          future: medTestRef.doc(qrCodeResult).get(),
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
