@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfilePage> {
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Text(
-                "Taha",
+                "Patient",
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
@@ -87,42 +87,10 @@ class _ProfileScreenState extends State<ProfilePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Column(
-                  children: <Widget>[
-                    Text(
-                      'Following',
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 22.0,
-                      ),
-                    ),
-                    SizedBox(height: 2.0),
-                    Text(
-                      "Hello",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                 
                 ),
                 Column(
-                  children: <Widget>[
-                    Text(
-                      'Followers',
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 22.0,
-                      ),
-                    ),
-                    SizedBox(height: 2.0),
-                    Text(
-                      "Hello",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                 
                 ),
               ],
             ),
