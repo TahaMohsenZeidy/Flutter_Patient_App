@@ -40,7 +40,7 @@ class _ScanPageState extends State<ScanPage> {
     if (file == null) return;
 
     final fileName = basename(file.path);
-    final destination = 'files/$fileName';
+    final destination = 'medImage/' + currentUser.uid + '/$fileName';
 
     task = FirebaseApi.uploadFile(destination, file);
     setState(() {});
@@ -150,6 +150,7 @@ class _ScanPageState extends State<ScanPage> {
                   future: patientsRef.doc(qrCodeResult).get(),
                   builder: (BuildContext context,
                       AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    Map<String, dynamic> data = snapshot.data.data();
                     if (snapshot.hasError) {
                       return Text("Something went wrong");
                     }
@@ -157,10 +158,7 @@ class _ScanPageState extends State<ScanPage> {
                     if (snapshot.hasData && !snapshot.data.exists) {
                       return Text("Document does not exist");
                     }
-
                     if (snapshot.connectionState == ConnectionState.done) {
-                      Map<String, dynamic> data = snapshot.data.data();
-
                       return Scaffold(
                         body: Stack(
                           children: [
