@@ -4,13 +4,11 @@ A Flutter Application To Manage Transactions In A Hospital.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+__La technologie a envahi avec succès chaque aspect de notre vie.
+ Tous les domaines de l'activité humaine ont été influencés,
+ d'une manière ou d'une autre, par la technologie.
+ Ainsi, il en va de même pour le secteur de santé.
+ En réalité, ce dernier a connu sa part de révolution numérique au sein de nombreuses économies développées,
+ et l'utilisation de logiciels d'application mobile est l'une des dernières tendances dans ce secteur,
+ laquelle devient rapidement un aspect essentiel de la prestation de services médicaux.__ 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

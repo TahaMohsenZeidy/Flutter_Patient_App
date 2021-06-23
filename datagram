@@ -1,0 +1,1578 @@
+@startuml
+set namespaceSeparator ::
+
+class "patient_app::choice.dart::Choice" {
+  +Widget* build()
+}
+
+class "patient_app::choice.dart::HomePage" {
+  +_HomePageState* createState()
+}
+
+class "patient_app::choice.dart::_HomePageState" {
+  +Widget* build()
+}
+
+class "patient_app::data::data.dart::Data" {
+  +String* imgUrl
+  +String* firstName
+  +String* lastName
+  +String* speciality
+  +String* hospital
+  +String* shortDesc
+  +String* longDesc
+  +Timestamp* availableTime
+}
+
+"patient_app::data::data.dart::Data" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+
+class "patient_app::Doctor::AddTests.dart::AddDisease" {
+  +_AddDiseaseState* createState()
+}
+
+class "patient_app::Doctor::AddTests.dart::_AddDiseaseState" {
+  +bool* validDisName
+  +bool* validDesc
+  +bool* validMedImage
+  +bool* validMedTest
+  +User* user
+  +FlutterLocalNotificationsPlugin* flutterLocalNotificationsPlugin
+  +dynamic id
+  +Future<dynamic>* instantNofitication()
+  +dynamic addingDisease()
+  +Widget* build()
+}
+
+"patient_app::Doctor::AddTests.dart::_AddDiseaseState" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::Doctor::AddTests.dart::_AddDiseaseState" o-- "flutter_local_notifications::src::flutter_local_notifications_plugin.dart::FlutterLocalNotificationsPlugin"
+
+class "patient_app::Doctor::Appointment.dart::Appointment" {
+  +String* patientName
+  +String* patienSurname
+  +String* imgLink
+  +String* phoneNumber
+  +String* appoitmentDate
+  +String* appoitmentTime
+  +String* appoitmentComment
+  +bool* isFuture
+}
+
+class "patient_app::Doctor::backBtnAndImage.dart::BackBtn" {
+  +Widget* build()
+}
+
+class "patient_app::Doctor::backBtnAndImage.dart::ImageAvatar" {
+  +String* assetImage
+  +Widget* build()
+}
+
+class "patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" {
+  +int* index
+  {static} +List<NavigationEvents*>* values
+  {static} +NavigationEvents* HomePageClickedEvent
+  {static} +NavigationEvents* PatientListClickedEvent
+  {static} +NavigationEvents* ProfileScreenClickedEvent
+  {static} +NavigationEvents* DoctorDashClickedEvent
+  {static} +NavigationEvents* LogoutClickedEvent
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" o-- "patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents"
+
+abstract class "patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" {
+}
+
+class "patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" {
+  -FirebaseAuth* _auth
+  +NavigationStates* initialState
+  +Stream<NavigationStates*>* mapEventToState()
+  +void signOut()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates"
+
+class "patient_app::Doctor::bottomAnimation.dart::Animator" {
+  +Widget* child
+  +Duration* time
+  +_AnimatorState* createState()
+}
+
+"patient_app::Doctor::bottomAnimation.dart::Animator" o-- "flutter::src::widgets::framework.dart::Widget"
+
+class "patient_app::Doctor::bottomAnimation.dart::_AnimatorState" {
+  +Timer* timer
+  +AnimationController* animationController
+  +Animation<dynamic>* animation
+  +void initState()
+  +void dispose()
+  +Widget* build()
+}
+
+"patient_app::Doctor::bottomAnimation.dart::_AnimatorState" o-- "dart::async::Timer"
+"patient_app::Doctor::bottomAnimation.dart::_AnimatorState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Doctor::bottomAnimation.dart::_AnimatorState" o-- "flutter::src::animation::animation.dart::Animation<dynamic>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::Doctor::bottomAnimation.dart::_AnimatorState"
+
+class "patient_app::Doctor::bottomAnimation.dart::WidgetAnimator" {
+  +Widget* child
+  +Widget* build()
+}
+
+"patient_app::Doctor::bottomAnimation.dart::WidgetAnimator" o-- "flutter::src::widgets::framework.dart::Widget"
+
+class "patient_app::Doctor::data::data.dart::Data" {
+  +String* imgUrl
+  +String* firstName
+  +String* lastName
+  +String* speciality
+  +String* hospital
+  +String* shortDesc
+  +String* longDesc
+  +Timestamp* availableTime
+}
+
+"patient_app::Doctor::data::data.dart::Data" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+
+class "patient_app::Doctor::doctor_dashboard.dart::DoctorDash" {
+  +Widget* child
+  +_DoctorDashState* createState()
+}
+
+"patient_app::Doctor::doctor_dashboard.dart::DoctorDash" o-- "flutter::src::widgets::framework.dart::Widget"
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::doctor_dashboard.dart::DoctorDash"
+
+class "patient_app::Doctor::doctor_dashboard.dart::_DoctorDashState" {
+  -List<Series<Pollution*, String*>*>* _seriesData
+  -List<Series<Task*, String*>*>* _seriesPieData
+  -List<Series<Sales*, int*>*>* _seriesLineData
+  -dynamic _generateData()
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::Doctor::doctor_dashboard.dart::Pollution" {
+  +String* place
+  +int* year
+  +int* quantity
+}
+
+class "patient_app::Doctor::doctor_dashboard.dart::Task" {
+  +String* task
+  +double* taskvalue
+  +Color* colorval
+}
+
+"patient_app::Doctor::doctor_dashboard.dart::Task" o-- "dart::ui::Color"
+
+class "patient_app::Doctor::doctor_dashboard.dart::Sales" {
+  +int* yearval
+  +int* salesval
+}
+
+class "patient_app::Doctor::edit_profile.dart::EditProfile" {
+  +_EditProfileState* createState()
+}
+
+class "patient_app::Doctor::edit_profile.dart::_EditProfileState" {
+  +bool* isObscurePassword
+  +Map<dynamic, dynamic>* label_vlaue
+  +String* email
+  +Widget* build()
+  +Widget* buildTextField()
+}
+
+class "patient_app::Doctor::new_consultation.dart::NewConsultation" {
+  +State<StatefulWidget*>* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::new_consultation.dart::NewConsultation"
+
+class "patient_app::Doctor::new_consultation.dart::NewConsultationState" {
+  +dynamic currentUser
+  -String* _symptoms
+  -String* _gen_feeling
+  -String* _health_concerns
+  -String* _additional_inputs
+  -GlobalKey<FormState*>* _formKey
+  -Widget* _buildSymptoms()
+  -Widget* _buildGeneralFeeling()
+  -Widget* _buildHealthConcerns()
+  -Widget* _buildAdditionalInputs()
+  +Widget* build()
+}
+
+"patient_app::Doctor::new_consultation.dart::NewConsultationState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+
+class "patient_app::Doctor::Patient.dart::Patient" {
+  +String* patientName
+  +String* patientSurName
+  +String* patientImageLink
+  +String* patientPhoneNumber
+}
+
+class "patient_app::Doctor::scan_generate_QR::Scan.dart::ScanPage" {
+  {static} +String* qrCodeResult
+  +_ScanPageState* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::scan_generate_QR::Scan.dart::ScanPage"
+
+class "patient_app::Doctor::scan_generate_QR::Scan.dart::_ScanPageState" {
+  +Widget* build()
+}
+
+class "patient_app::Doctor::screens::all_history.dart::PatientsScreen" {
+  +_HomeScreenState* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::screens::all_history.dart::PatientsScreen"
+
+class "patient_app::Doctor::screens::all_history.dart::_HomeScreenState" {
+  -dynamic _buildRestaurants()
+  +Widget* build()
+}
+
+class "patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::AppointmentDetailScreen" {
+  +Appointment* appointmentData
+  +_AppointmentDetailScreenState* createState()
+}
+
+"patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::AppointmentDetailScreen" o-- "patient_app::models::appointmentModels::Appointment.dart::Appointment"
+
+class "patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState" {
+  +FlutterLocalNotificationsPlugin* flutterLocalNotificationsPlugin
+  +bool* isContainerCollapsed
+  +bool* isDateAndTimeVisible
+  +bool* isUserProfileImageVisible
+  +bool* isPhoneLogoVisible
+  +bool* areDetailsvisible
+  +AnimationController* animationController
+  +Tween<double*>* tweenedValue
+  +Animation<dynamic>* tweenAnimation
+  +Future<dynamic>* onSelectNotification()
+  +dynamic initializeNotifications()
+  +Future<dynamic>* AcceptInstantNofitication()
+  +Future<dynamic>* DeclineInstantNofitication()
+  +void initState()
+  +void initiateAnimation()
+  +Widget* build()
+  +void reverseAnimation()
+}
+
+"patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState" o-- "flutter_local_notifications::src::flutter_local_notifications_plugin.dart::FlutterLocalNotificationsPlugin"
+"patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState" o-- "flutter::src::animation::tween.dart::Tween<double>"
+"patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState" o-- "flutter::src::animation::animation.dart::Animation<dynamic>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::Doctor::screens::appointmentDetailScreen::AppointmentDetailScreen.dart::_AppointmentDetailScreenState"
+
+class "patient_app::Doctor::screens::appointmentScreen::appointmentScreen.dart::AppointmentScreen" {
+  +_AppointmentScreenState* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::screens::appointmentScreen::appointmentScreen.dart::AppointmentScreen"
+
+class "patient_app::Doctor::screens::appointmentScreen::appointmentScreen.dart::_AppointmentScreenState" {
+  +bool* isFirstTime
+  +bool* isLoading
+  +List<Widget*>* topHeader
+  +List<Widget*>* currentAppointment
+  +List<Widget*>* midHeader
+  +List<Widget*>* futureAppointment
+  +List<Widget*>* finalList
+  +SlidingCardController* aController
+  +List<Widget*>* pastAppointments
+  +List<Widget*>* futureAppointments
+  +void initState()
+  +dynamic fetchCloudData()
+  +dynamic fetchData()
+  +Widget* build()
+  +dynamic buildHeader()
+  +dynamic buildDocName()
+  +dynamic buildFooter()
+  +Future<bool*>* initiateList()
+}
+
+"patient_app::Doctor::screens::appointmentScreen::appointmentScreen.dart::_AppointmentScreenState" o-- "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCardController"
+
+class "patient_app::Doctor::screens::appointmentScreen::appointmentScreen.dart::AppointmentManager" {
+  {static} +List<Appointment*>* appointmentList
+  {static} +List<dynamic>* generateAppointmentList()
+  {static} +dynamic getAllAppointmentIDs()
+}
+
+class "patient_app::Doctor::screens::one_history.dart::RestaurantScreen" {
+  +Restaurant* restaurant
+  +_RestaurantScreenState* createState()
+}
+
+"patient_app::Doctor::screens::one_history.dart::RestaurantScreen" o-- "patient_app::models::restaurant.dart::Restaurant"
+
+class "patient_app::Doctor::screens::one_history.dart::_RestaurantScreenState" {
+  -dynamic _buildMenuItem()
+  +Widget* build()
+}
+
+class "patient_app::Doctor::screens::profile_screen.dart::ProfileScreen" {
+  +User* user
+  +_ProfileScreenState* createState()
+}
+
+"patient_app::Doctor::screens::profile_screen.dart::ProfileScreen" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::screens::profile_screen.dart::ProfileScreen"
+
+class "patient_app::Doctor::screens::profile_screen.dart::_ProfileScreenState" {
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  -PageController* _yourPostsPageController
+  -PageController* _favoritesPageController
+  -String* _name
+  -String* _specaility
+  -String* _experience
+  -dynamic _email
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::Doctor::screens::profile_screen.dart::_ProfileScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+"patient_app::Doctor::screens::profile_screen.dart::_ProfileScreenState" o-- "flutter::src::widgets::page_view.dart::PageController"
+
+class "patient_app::Doctor::sidebar::menu_item.dart::MenuItem" {
+  +IconData* icon
+  +String* title
+  +Function* onTap
+  +Widget* build()
+}
+
+"patient_app::Doctor::sidebar::menu_item.dart::MenuItem" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "patient_app::Doctor::sidebar::sidebar.dart::SideBar" {
+  +_SideBarState* createState()
+}
+
+class "patient_app::Doctor::sidebar::sidebar.dart::_SideBarState" {
+  -AnimationController* _animationController
+  +StreamController<bool*>* isSidebarOpenedStreamController
+  +Stream<bool*>* isSidebarOpenedStream
+  +StreamSink<bool*>* isSidebarOpenedSink
+  -Duration* _animationDuration
+  +void initState()
+  +void dispose()
+  +void onIconPressed()
+  +Widget* build()
+}
+
+"patient_app::Doctor::sidebar::sidebar.dart::_SideBarState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Doctor::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamController<bool>"
+"patient_app::Doctor::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::Stream<bool>"
+"patient_app::Doctor::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamSink<bool>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::Doctor::sidebar::sidebar.dart::_SideBarState"
+
+class "patient_app::Doctor::sidebar::sidebar.dart::CustomMenuClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::Doctor::sidebar::sidebar_layout.dart::SideBarLayoutDoctor" {
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::AddMedecine.dart::MedicineReminder" {
+  +_MedicineReminderState* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Doctor::src::AddMedecine.dart::MedicineReminder"
+
+class "patient_app::Doctor::src::AddMedecine.dart::_MedicineReminderState" {
+  +GlobalBloc* globalBloc
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::AddMedecine.dart::_MedicineReminderState" o-- "patient_app::Doctor::src::global_bloc.dart::GlobalBloc"
+
+class "patient_app::Doctor::src::global_bloc.dart::GlobalBloc" {
+  -BehaviorSubject<List<Medicine*>*>* _medicineList$
+  +BehaviorSubject<List<Medicine*>*>* medicineList$
+  +Future<dynamic>* removeMedicine()
+  +Future<dynamic>* updateMedicineList()
+  +Future<dynamic>* makeMedicineList()
+  +void dispose()
+}
+
+"patient_app::Doctor::src::global_bloc.dart::GlobalBloc" o-- "rxdart::src::subjects::behavior_subject.dart::BehaviorSubject<List<Medicine>>"
+
+class "patient_app::Doctor::src::models::day.dart::Day" {
+  +int* index
+  {static} +List<Day*>* values
+  {static} +Day* Sunday
+  {static} +Day* Monday
+  {static} +Day* Tuesday
+  {static} +Day* Wednesday
+  {static} +Day* Thursday
+  {static} +Day* Friday
+  {static} +Day* Saturday
+}
+
+"patient_app::Doctor::src::models::day.dart::Day" o-- "patient_app::Doctor::src::models::day.dart::Day"
+
+class "patient_app::Doctor::src::models::duration.dart::Period" {
+  +int* index
+  {static} +List<Period*>* values
+  {static} +Period* Week
+  {static} +Period* Month
+  {static} +Period* Year
+}
+
+"patient_app::Doctor::src::models::duration.dart::Period" o-- "patient_app::Doctor::src::models::duration.dart::Period"
+
+class "patient_app::Doctor::src::models::errors.dart::EntryError" {
+  +int* index
+  {static} +List<EntryError*>* values
+  {static} +EntryError* NameDuplicate
+  {static} +EntryError* NameNull
+  {static} +EntryError* Dosage
+  {static} +EntryError* Type
+  {static} +EntryError* Interval
+  {static} +EntryError* StartTime
+  {static} +EntryError* None
+}
+
+"patient_app::Doctor::src::models::errors.dart::EntryError" o-- "patient_app::Doctor::src::models::errors.dart::EntryError"
+
+class "patient_app::Doctor::src::models::medicine.dart::Medicine" {
+  +List<dynamic>* notificationIDs
+  +String* medicineName
+  +int* dosage
+  +String* medicineType
+  +int* interval
+  +String* startTime
+  +String* getName
+  +int* getDosage
+  +String* getType
+  +int* getInterval
+  +String* getStartTime
+  +List<dynamic>* getIDs
+  +Map<String*, dynamic>* toJson()
+}
+
+class "patient_app::Doctor::src::models::medicine_type.dart::MedicineType" {
+  +int* index
+  {static} +List<MedicineType*>* values
+  {static} +MedicineType* Bottle
+  {static} +MedicineType* Pill
+  {static} +MedicineType* Syringe
+  {static} +MedicineType* Tablet
+  {static} +MedicineType* None
+}
+
+"patient_app::Doctor::src::models::medicine_type.dart::MedicineType" o-- "patient_app::Doctor::src::models::medicine_type.dart::MedicineType"
+
+class "patient_app::Doctor::src::ui::homepage::homepage.dart::MedHomePage" {
+  +_HomePageState* createState()
+}
+
+class "patient_app::Doctor::src::ui::homepage::homepage.dart::_HomePageState" {
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::homepage::homepage.dart::TopContainer" {
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::homepage::homepage.dart::BottomContainer" {
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::homepage::homepage.dart::MedicineCard" {
+  +Medicine* medicine
+  +Hero* makeIcon()
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::ui::homepage::homepage.dart::MedicineCard" o-- "patient_app::Doctor::src::models::medicine.dart::Medicine"
+
+class "patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::MedicineDetails" {
+  +Medicine* medicine
+  +Widget* build()
+  +dynamic openAlertBox()
+}
+
+"patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::MedicineDetails" o-- "patient_app::Doctor::src::models::medicine.dart::Medicine"
+
+class "patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::MainSection" {
+  +Medicine* medicine
+  +Hero* makeIcon()
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::MainSection" o-- "patient_app::Doctor::src::models::medicine.dart::Medicine"
+
+class "patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::MainInfoTab" {
+  +String* fieldTitle
+  +String* fieldInfo
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::ExtendedSection" {
+  +Medicine* medicine
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::ExtendedSection" o-- "patient_app::Doctor::src::models::medicine.dart::Medicine"
+
+class "patient_app::Doctor::src::ui::medicine_details::medicine_details.dart::ExtendedInfoTab" {
+  +String* fieldTitle
+  +String* fieldInfo
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::NewEntry" {
+  +_NewEntryState* createState()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" {
+  +TextEditingController* controllerDisName
+  +User* user
+  +TextEditingController* typeController
+  +TextEditingController* nameController
+  +TextEditingController* dosageController
+  +FlutterLocalNotificationsPlugin* flutterLocalNotificationsPlugin
+  -NewEntryBloc* _newEntryBloc
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  +dynamic id
+  +dynamic addingDisease()
+  +Future<dynamic>* instantNofitication()
+  +void dispose()
+  +void initState()
+  +Widget* build()
+  +void initializeErrorListen()
+  +void displayError()
+  +List<int*>* makeIDs()
+  +dynamic initializeNotifications()
+  +Future<dynamic>* onSelectNotification()
+  +Future<void>* scheduleNotification()
+}
+
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" o-- "flutter_local_notifications::src::flutter_local_notifications_plugin.dart::FlutterLocalNotificationsPlugin"
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" o-- "patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc"
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_NewEntryState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::IntervalSelection" {
+  +_IntervalSelectionState* createState()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::_IntervalSelectionState" {
+  -List<int*>* _intervals
+  -int* _selected
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::SelectTime" {
+  +_SelectTimeState* createState()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::_SelectTimeState" {
+  -TimeOfDay* _time
+  -bool* _clicked
+  -Future<TimeOfDay*>* _selectTime()
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::_SelectTimeState" o-- "flutter::src::material::time.dart::TimeOfDay"
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::MedicineTypeColumn" {
+  +MedicineType* type
+  +String* name
+  +int* iconValue
+  +bool* isSelected
+  +Widget* build()
+}
+
+"patient_app::Doctor::src::ui::new_entry::new_entry.dart::MedicineTypeColumn" o-- "patient_app::Doctor::src::models::medicine_type.dart::MedicineType"
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry.dart::PanelTitle" {
+  +String* title
+  +bool* isRequired
+  +Widget* build()
+}
+
+class "patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc" {
+  -BehaviorSubject<MedicineType*>* _selectedMedicineType$
+  -BehaviorSubject<int*>* _selectedInterval$
+  -BehaviorSubject<String*>* _selectedTimeOfDay$
+  -BehaviorSubject<EntryError*>* _errorState$
+  +BehaviorSubject<MedicineType*>* selectedMedicineType
+  +BehaviorSubject<int*>* selectedInterval$
+  +BehaviorSubject<String*>* selectedTimeOfDay$
+  +BehaviorSubject<EntryError*>* errorState$
+  +void dispose()
+  +void submitError()
+  +void updateInterval()
+  +void updateTime()
+  +void updateSelectedMedicine()
+}
+
+"patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc" o-- "rxdart::src::subjects::behavior_subject.dart::BehaviorSubject<MedicineType>"
+"patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc" o-- "rxdart::src::subjects::behavior_subject.dart::BehaviorSubject<int>"
+"patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc" o-- "rxdart::src::subjects::behavior_subject.dart::BehaviorSubject<String>"
+"patient_app::Doctor::src::ui::new_entry::new_entry_bloc.dart::NewEntryBloc" o-- "rxdart::src::subjects::behavior_subject.dart::BehaviorSubject<EntryError>"
+
+class "patient_app::Doctor::src::ui::success_screen::success_screen.dart::SuccessScreen" {
+  +_SuccessScreenState* createState()
+}
+
+class "patient_app::Doctor::src::ui::success_screen::success_screen.dart::_SuccessScreenState" {
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::ActionButton.dart::ActionButton" {
+  +Function* onAcceptPressed
+  +Function* onDecinePressed
+  +Widget* build()
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentBackCard.dart::AppointmentBackCard" {
+  +String* patientComment
+  +Function* onPhoneTapped
+  +Widget* build()
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentCard.dart::AppointmentCard" {
+  +Appointment* appointmentData
+  +SlidingCardController* slidingCardController
+  +Function* onCardTapped
+  +Widget* build()
+}
+
+"patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentCard.dart::AppointmentCard" o-- "patient_app::models::appointmentModels::Appointment.dart::Appointment"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentCard.dart::AppointmentCard" o-- "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCardController"
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentFrontCard.dart::AppointmentFrontCard" {
+  +String* patienName
+  +String* patienSurname
+  +Function* onInfoTapped
+  +Function* onRedCloseButtonTapped
+  +Function* onAccep
+  +Function* onDecline
+  +String* appointmentDate
+  +String* appointmentTime
+  +String* imgLink
+  +_AppointmentFrontCardState* createState()
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::AppointmentFrontCard.dart::_AppointmentFrontCardState" {
+  +bool* isinfoPressed
+  +Widget* build()
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::MiniAppointmentCard.dart::MiniAppointmentCard" {
+  +Appointment* appointmentData
+  +Function* onCardTapped
+  +Widget* build()
+}
+
+"patient_app::Doctor::widgets::appointmentWidgetComponents::MiniAppointmentCard.dart::MiniAppointmentCard" o-- "patient_app::models::appointmentModels::Appointment.dart::Appointment"
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCardController" {
+  +Function* expandCard
+  +Function* collapseCard
+  +bool* isCardSeparated
+}
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCard" {
+  +SlidingCardController* controller
+  +Widget* frontCardWidget
+  +Widget* backCardWidget
+  +double* visibleCardHeight
+  +double* hiddenCardHeight
+  +double* slidingCardWidth
+  +double* slimeCardBorderRadius
+  +double* slimeCardElevation
+  +Duration* slidingAnimmationDuration
+  +Curve* slidingAnimmationForwardCurve
+  +Curve* slidingAnimationReverseCurve
+  +bool* animateOpacity
+  +bool* showColors
+  +double* cardsGap
+  +_SlidingCardState* createState()
+}
+
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCard" o-- "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCardController"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCard" o-- "flutter::src::widgets::framework.dart::Widget"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::SlidingCard" o-- "flutter::src::animation::curves.dart::Curve"
+
+class "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState" {
+  +AnimationController* animationController
+  +Tween<double*>* separatedValue
+  +Animation<dynamic>* animationValue
+  +bool* isSeparated
+  +Curve* animationCurve
+  +void initState()
+  +void expandCard()
+  +void collapseCard()
+  +void dispose()
+  +Widget* build()
+}
+
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState" o-- "flutter::src::animation::tween.dart::Tween<double>"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState" o-- "flutter::src::animation::animation.dart::Animation<dynamic>"
+"patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState" o-- "flutter::src::animation::curves.dart::Curve"
+"flutter::src::widgets::ticker_provider.dart::TickerProviderStateMixin" <|-- "patient_app::Doctor::widgets::appointmentWidgetComponents::SlidingCard.dart::_SlidingCardState"
+
+class "patient_app::Doctor::widgets::profile_clipper.dart::ProfileClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::HomePage.dart::HomePage" {
+  +_HomePageState* createState()
+}
+
+class "patient_app::HomePage.dart::_HomePageState" {
+  -FirebaseAuth* _auth
+  +User* user
+  +bool* isloggedin
+  +dynamic checkAuthentification()
+  +dynamic getUser()
+  +dynamic signOut()
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::HomePage.dart::_HomePageState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"patient_app::HomePage.dart::_HomePageState" o-- "firebase_auth::firebase_auth.dart::User"
+
+class "patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" {
+  +int* index
+  {static} +List<NavigationEvents*>* values
+  {static} +NavigationEvents* DashboardClickedEvent
+  {static} +NavigationEvents* ProfileScreenClickedEvent
+  {static} +NavigationEvents* NewCaseClickedEvent
+  {static} +NavigationEvents* ProfilePageClickedEvent
+}
+
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" o-- "patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents"
+
+abstract class "patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" {
+}
+
+class "patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" {
+  +NavigationStates* initialState
+  +Stream<NavigationStates*>* mapEventToState()
+}
+
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates"
+
+class "patient_app::LaboratoryAssistant::Buttom_widget.dart::ButtonWidget" {
+  +IconData* icon
+  +String* text
+  +void Function()* onClicked
+  +Widget* build()
+  +Widget* buildContent()
+}
+
+"patient_app::LaboratoryAssistant::Buttom_widget.dart::ButtonWidget" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"patient_app::LaboratoryAssistant::Buttom_widget.dart::ButtonWidget" o-- "dart::ui::void Function()"
+
+class "patient_app::LaboratoryAssistant::edit_profile.dart::EditProfile" {
+  +_EditProfileState* createState()
+}
+
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::LaboratoryAssistant::edit_profile.dart::EditProfile"
+
+class "patient_app::LaboratoryAssistant::edit_profile.dart::_EditProfileState" {
+  +bool* isObscurePassword
+  +Map<dynamic, dynamic>* label_vlaue
+  +Widget* build()
+  +Widget* buildTextField()
+}
+
+class "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::HomePage1" {
+  +Widget* child
+  +_HomePageState* createState()
+}
+
+"patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::HomePage1" o-- "flutter::src::widgets::framework.dart::Widget"
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::HomePage1"
+
+class "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::_HomePageState" {
+  -List<Series<Pollution*, String*>*>* _seriesData
+  -List<Series<Task*, String*>*>* _seriesPieData
+  -List<Series<Sales*, int*>*>* _seriesLineData
+  -dynamic _generateData()
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::Pollution" {
+  +String* place
+  +int* year
+  +int* quantity
+}
+
+class "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::Task" {
+  +String* task
+  +double* taskvalue
+  +Color* colorval
+}
+
+"patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::Task" o-- "dart::ui::Color"
+
+class "patient_app::LaboratoryAssistant::hospital-dashboard-home.dart::Sales" {
+  +int* yearval
+  +int* salesval
+}
+
+class "patient_app::LaboratoryAssistant::profile_screen.dart::ProfilePage" {
+  +User* user
+  +_ProfilePageState* createState()
+}
+
+"patient_app::LaboratoryAssistant::profile_screen.dart::ProfilePage" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::LaboratoryAssistant::profile_screen.dart::ProfilePage"
+
+class "patient_app::LaboratoryAssistant::profile_screen.dart::_ProfilePageState" {
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  -PageController* _yourPostsPageController
+  -PageController* _favoritesPageController
+  -String* _name
+  -String* _specaility
+  -String* _experience
+  -dynamic _email
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::LaboratoryAssistant::profile_screen.dart::_ProfilePageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+"patient_app::LaboratoryAssistant::profile_screen.dart::_ProfilePageState" o-- "flutter::src::widgets::page_view.dart::PageController"
+
+class "patient_app::LaboratoryAssistant::Scan.dart::ScanPage" {
+  +_ScanPageState* createState()
+}
+
+"patient_app::LaboratoryAssistant::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::LaboratoryAssistant::Scan.dart::ScanPage"
+
+class "patient_app::LaboratoryAssistant::Scan.dart::_ScanPageState" {
+  +String* tests
+  +UploadTask* task
+  +File* file
+  +String* qrCodeResult
+  +Future<dynamic>* selectFile()
+  +Future<dynamic>* uploadFile()
+  +Widget* buildUploadStatus()
+  +Widget* build()
+}
+
+"patient_app::LaboratoryAssistant::Scan.dart::_ScanPageState" o-- "firebase_storage::firebase_storage.dart::UploadTask"
+"patient_app::LaboratoryAssistant::Scan.dart::_ScanPageState" o-- "dart::io::File"
+
+class "patient_app::LaboratoryAssistant::sidebar::menu_item.dart::MenuItem" {
+  +IconData* icon
+  +String* title
+  +Function* onTap
+  +Widget* build()
+}
+
+"patient_app::LaboratoryAssistant::sidebar::menu_item.dart::MenuItem" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "patient_app::LaboratoryAssistant::sidebar::sidebar.dart::SideBar" {
+  +_SideBarState* createState()
+}
+
+class "patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState" {
+  -AnimationController* _animationController
+  +StreamController<bool*>* isSidebarOpenedStreamController
+  +Stream<bool*>* isSidebarOpenedStream
+  +StreamSink<bool*>* isSidebarOpenedSink
+  -Duration* _animationDuration
+  +void initState()
+  +void dispose()
+  +void onIconPressed()
+  +Widget* build()
+}
+
+"patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamController<bool>"
+"patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::Stream<bool>"
+"patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamSink<bool>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::LaboratoryAssistant::sidebar::sidebar.dart::_SideBarState"
+
+class "patient_app::LaboratoryAssistant::sidebar::sidebar.dart::CustomMenuClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::LaboratoryAssistant::sidebar::sidebar_layout.dart::SideBarLayoutLaboratoryAssistant" {
+  +Widget* build()
+}
+
+class "patient_app::LaboratoryAssistant::UploadFile.dart::FirebaseApi" {
+  {static} +UploadTask* uploadFile()
+  {static} +UploadTask* uploadBytes()
+}
+
+class "patient_app::Login.dart::Login" {
+  +_LoginState* createState()
+}
+
+"patient_app::Doctor::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Login.dart::Login"
+
+class "patient_app::Login.dart::_LoginState" {
+  -FirebaseAuth* _auth
+  -GlobalKey<FormState*>* _formKey
+  -String* _email
+  -String* _password
+  +dynamic checkAuthentification()
+  +void initState()
+  +dynamic login()
+  +dynamic showError()
+  +dynamic navigateToSignUp()
+  +Widget* build()
+}
+
+"patient_app::Login.dart::_LoginState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"patient_app::Login.dart::_LoginState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+
+class "patient_app::main.dart::MyApp" {
+  +Widget* build()
+}
+
+class "patient_app::models::appointmentModels::Appointment.dart::Appointment" {
+  +String* patientName
+  +String* patienSurname
+  +String* imgLink
+  +String* phoneNumber
+  +String* appoitmentDate
+  +String* appoitmentTime
+  +String* appoitmentComment
+  +bool* isFuture
+  {static} +Appointment* getAppointmentFromDoc()
+}
+
+class "patient_app::models::appointmentModels::Patient.dart::Patient" {
+  +String* patientName
+  +String* patientSurName
+  +String* patientImageLink
+  +String* patientPhoneNumber
+}
+
+class "patient_app::models::food.dart::Food" {
+  +String* imageUrl
+  +String* name
+  +double* price
+}
+
+class "patient_app::models::order.dart::Order" {
+  +Restaurant* restaurant
+  +Food* food
+  +String* date
+  +int* quantity
+}
+
+"patient_app::models::order.dart::Order" o-- "patient_app::models::restaurant.dart::Restaurant"
+"patient_app::models::order.dart::Order" o-- "patient_app::models::food.dart::Food"
+
+class "patient_app::models::restaurant.dart::Restaurant" {
+  +String* imageUrl
+  +String* name
+  +String* address
+  +int* rating
+  +List<Food*>* menu
+}
+
+class "patient_app::models::user.dart::User" {
+  +String* name
+  +List<Order*>* orders
+  +List<Order*>* cart
+}
+
+class "patient_app::models::user_model.dart::User" {
+  +String* profileImageUrl
+  +String* backgroundImageUrl
+  +String* name
+}
+
+class "patient_app::notifications::notifications.dart::Notifications" {
+  -BuildContext* _context
+  +Future<FlutterLocalNotificationsPlugin*>* initNotifies()
+  +Future<dynamic>* showNotification()
+  +Future<dynamic>* removeNotify()
+  +Future<dynamic>* onSelectNotification()
+}
+
+"patient_app::notifications::notifications.dart::Notifications" o-- "flutter::src::widgets::framework.dart::BuildContext"
+
+class "patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" {
+  +int* index
+  {static} +List<NavigationEvents*>* values
+  {static} +NavigationEvents* HomePageClickedEvent
+  {static} +NavigationEvents* ProfileClickedEvent
+  {static} +NavigationEvents* EditProfileClickedEvent
+  {static} +NavigationEvents* HistoryClickedEvent
+  {static} +NavigationEvents* QrCodeClickedEvent
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" o-- "patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents"
+
+abstract class "patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" {
+}
+
+class "patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" {
+  +NavigationStates* initialState
+  +Stream<NavigationStates*>* mapEventToState()
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates"
+
+class "patient_app::Patient::clientAppointment.dart::MakeAnAppointment" {
+  +Widget* build()
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::clientAppointment.dart::MakeAnAppointment"
+
+class "patient_app::Patient::clientAppointment.dart::MyHomePage" {
+  +_MyHomePageState* createState()
+}
+
+class "patient_app::Patient::clientAppointment.dart::_MyHomePageState" {
+  +Widget* build()
+  +void openHomePage()
+}
+
+class "patient_app::Patient::clientAppointment.dart::pathPainter" {
+  +void paint()
+  +bool* shouldRepaint()
+}
+
+class "patient_app::Patient::DocInfoPage.dart::DocInfoPage" {
+  +Widget* build()
+}
+
+class "patient_app::Patient::DocInfoPage.dart::docInfoPage" {
+  +String* docId
+  +_docInfoPageState* createState()
+}
+
+class "patient_app::Patient::DocInfoPage.dart::_docInfoPageState" {
+  +List<Data*>* datalist
+  +Data* dat
+  +void initState()
+  +dynamic fetchPageData()
+  +dynamic buildPageImage()
+  +Widget* build()
+  +Widget* CardUI()
+  +Future<void>* addAppt()
+  +Container* timeSlotWidget()
+}
+
+"patient_app::Patient::DocInfoPage.dart::_docInfoPageState" o-- "patient_app::data::data.dart::Data"
+
+class "patient_app::Patient::edit_profile.dart::EditProfile" {
+  +_EditProfileState* createState()
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::edit_profile.dart::EditProfile"
+
+class "patient_app::Patient::edit_profile.dart::_EditProfileState" {
+  +bool* isObscurePassword
+  +Map<dynamic, dynamic>* label_vlaue
+  +Widget* build()
+  +Widget* buildTextField()
+}
+
+class "patient_app::Patient::Generate.dart::GeneratePage" {
+  +State<StatefulWidget*>* createState()
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::Generate.dart::GeneratePage"
+
+class "patient_app::Patient::Generate.dart::GeneratePageState" {
+  +User* user
+  +String* qrData
+  +TextEditingController* qrdataFeed
+  +dynamic id
+  +Widget* build()
+}
+
+"patient_app::Patient::Generate.dart::GeneratePageState" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::Patient::Generate.dart::GeneratePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "patient_app::Patient::HomePage.dart::Patient_Home" {
+  +Widget* build()
+}
+
+class "patient_app::Patient::HomePage.dart::MyFirstPage" {
+  +_MyFirstPageState* createState()
+}
+
+class "patient_app::Patient::HomePage.dart::_MyFirstPageState" {
+  +List<Widget*>* docs
+  -List<Widget*>* _tmpDocs
+  +List<String*>* specialities
+  +String* t
+  +void initState()
+  +dynamic fetchDoctorsInfos()
+  +dynamic sortBySpecialty()
+  +Widget* build()
+  +dynamic categoryContainer()
+  +Container* createDocWidget()
+  +void openDocInfo()
+}
+
+class "patient_app::Patient::HomePage.dart::pathPainter" {
+  +void paint()
+  +bool* shouldRepaint()
+}
+
+class "patient_app::Patient::hospital-dashboard-home.dart::HomePage" {
+  +Widget* child
+  +_HomePageState* createState()
+}
+
+"patient_app::Patient::hospital-dashboard-home.dart::HomePage" o-- "flutter::src::widgets::framework.dart::Widget"
+
+class "patient_app::Patient::hospital-dashboard-home.dart::_HomePageState" {
+  -List<Series<Pollution*, String*>*>* _seriesData
+  -List<Series<Task*, String*>*>* _seriesPieData
+  -List<Series<Sales*, int*>*>* _seriesLineData
+  -dynamic _generateData()
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::Patient::hospital-dashboard-home.dart::Pollution" {
+  +String* place
+  +int* year
+  +int* quantity
+}
+
+class "patient_app::Patient::hospital-dashboard-home.dart::Task" {
+  +String* task
+  +double* taskvalue
+  +Color* colorval
+}
+
+"patient_app::Patient::hospital-dashboard-home.dart::Task" o-- "dart::ui::Color"
+
+class "patient_app::Patient::hospital-dashboard-home.dart::Sales" {
+  +int* yearval
+  +int* salesval
+}
+
+class "patient_app::Patient::pages::daily_page.dart::DailyPage" {
+  +_DailyPageState* createState()
+}
+
+class "patient_app::Patient::pages::daily_page.dart::_DailyPageState" {
+  +int* activeDay
+  +Widget* build()
+  +Widget* getBody()
+}
+
+class "patient_app::Patient::pages::meds_page.dart::BudgetPage" {
+  +_BudgetPageState* createState()
+}
+
+class "patient_app::Patient::pages::meds_page.dart::_BudgetPageState" {
+  +int* activeDay
+  +Widget* build()
+  +Widget* getBody()
+}
+
+class "patient_app::Patient::pages::profile_page.dart::ProfilePage" {
+  +User* user
+  +_ProfileScreenState* createState()
+}
+
+"patient_app::Patient::pages::profile_page.dart::ProfilePage" o-- "patient_app::models::user_model.dart::User"
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::pages::profile_page.dart::ProfilePage"
+
+class "patient_app::Patient::pages::profile_page.dart::_ProfileScreenState" {
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  -PageController* _yourPostsPageController
+  -PageController* _favoritesPageController
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::Patient::pages::profile_page.dart::_ProfileScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+"patient_app::Patient::pages::profile_page.dart::_ProfileScreenState" o-- "flutter::src::widgets::page_view.dart::PageController"
+
+class "patient_app::Patient::pages::stats_page.dart::StatsPage" {
+  +_StatsPageState* createState()
+}
+
+class "patient_app::Patient::pages::stats_page.dart::_StatsPageState" {
+  +int* activeDay
+  +bool* showAvg
+  +Widget* build()
+  +Widget* getBody()
+}
+
+class "patient_app::Patient::ProfilePage.dart::ProfilePage" {
+  +User* user
+  +_ProfileScreenState* createState()
+}
+
+"patient_app::Patient::ProfilePage.dart::ProfilePage" o-- "patient_app::models::user_model.dart::User"
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::ProfilePage.dart::ProfilePage"
+
+class "patient_app::Patient::ProfilePage.dart::_ProfileScreenState" {
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  -PageController* _yourPostsPageController
+  -PageController* _favoritesPageController
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::Patient::ProfilePage.dart::_ProfileScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+"patient_app::Patient::ProfilePage.dart::_ProfileScreenState" o-- "flutter::src::widgets::page_view.dart::PageController"
+
+class "patient_app::Patient::profile_clipper.dart::ProfileClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::Patient::sidebar::menu_item.dart::MenuItem" {
+  +IconData* icon
+  +String* title
+  +Function* onTap
+  +Widget* build()
+}
+
+"patient_app::Patient::sidebar::menu_item.dart::MenuItem" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "patient_app::Patient::sidebar::sidebar.dart::SideBar" {
+  +_SideBarState* createState()
+}
+
+class "patient_app::Patient::sidebar::sidebar.dart::_SideBarState" {
+  -AnimationController* _animationController
+  +StreamController<bool*>* isSidebarOpenedStreamController
+  +Stream<bool*>* isSidebarOpenedStream
+  +StreamSink<bool*>* isSidebarOpenedSink
+  -Duration* _animationDuration
+  +void initState()
+  +void dispose()
+  +void onIconPressed()
+  +Widget* build()
+}
+
+"patient_app::Patient::sidebar::sidebar.dart::_SideBarState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Patient::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamController<bool>"
+"patient_app::Patient::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::Stream<bool>"
+"patient_app::Patient::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamSink<bool>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::Patient::sidebar::sidebar.dart::_SideBarState"
+
+class "patient_app::Patient::sidebar::sidebar.dart::CustomMenuClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::Patient::sidebar::sidebar_layout.dart::SideBarLayoutPatient" {
+  +Widget* build()
+}
+
+class "patient_app::Patient::ViewHistory.dart::RootApp" {
+  +_RootAppState* createState()
+}
+
+"patient_app::Patient::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Patient::ViewHistory.dart::RootApp"
+
+class "patient_app::Patient::ViewHistory.dart::_RootAppState" {
+  +int* pageIndex
+  +List<Widget*>* pages
+  +void initState()
+  +void dispose()
+  +Widget* build()
+  +Widget* getBody()
+  +Widget* getFooter()
+  +dynamic selectedTab()
+}
+
+class "patient_app::Pharmacie::Scan_generate_QR::Scan.dart::ScanPage" {
+  +_ScanPageState* createState()
+}
+
+class "patient_app::Pharmacie::Scan_generate_QR::Scan.dart::_ScanPageState" {
+  +String* qrCodeResult
+  +Widget* build()
+}
+
+class "patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" {
+  +int* index
+  {static} +List<NavigationEvents*>* values
+  {static} +NavigationEvents* DashboardClickedEvent
+  {static} +NavigationEvents* NewCaseClickedEvent
+  {static} +NavigationEvents* EditProfileClickedEvent
+  {static} +NavigationEvents* ProfilePageClickedEvent
+}
+
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents" o-- "patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationEvents"
+
+abstract class "patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" {
+}
+
+class "patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" {
+  -FirebaseAuth* _auth
+  +NavigationStates* initialState
+  +Stream<NavigationStates*>* mapEventToState()
+}
+
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationBloc" o-- "patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates"
+
+class "patient_app::Radiologist::Buttom_widget.dart::ButtonWidget" {
+  +IconData* icon
+  +String* text
+  +void Function()* onClicked
+  +Widget* build()
+  +Widget* buildContent()
+}
+
+"patient_app::Radiologist::Buttom_widget.dart::ButtonWidget" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"patient_app::Radiologist::Buttom_widget.dart::ButtonWidget" o-- "dart::ui::void Function()"
+
+class "patient_app::Radiologist::data.dart::data" {
+  +_AppointmentScreenState* createState()
+}
+
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Radiologist::data.dart::data"
+
+class "patient_app::Radiologist::data.dart::_AppointmentScreenState" {
+  +bool* isFirstTime
+  +bool* isLoading
+  +List<Widget*>* topHeader
+  +List<Widget*>* currentAppointment
+  +List<Widget*>* midHeader
+  +List<Widget*>* futureAppointment
+  +List<Widget*>* finalList
+  +Widget* build()
+}
+
+class "patient_app::Radiologist::edit_profile.dart::EditProfile" {
+  +_EditProfileState* createState()
+}
+
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Radiologist::edit_profile.dart::EditProfile"
+
+class "patient_app::Radiologist::edit_profile.dart::_EditProfileState" {
+  +bool* isObscurePassword
+  +Map<dynamic, dynamic>* label_vlaue
+  +Widget* build()
+  +Widget* buildTextField()
+}
+
+class "patient_app::Radiologist::hospital-dashboard-home.dart::HomePage1" {
+  +Widget* child
+  +_HomePageState* createState()
+}
+
+"patient_app::Radiologist::hospital-dashboard-home.dart::HomePage1" o-- "flutter::src::widgets::framework.dart::Widget"
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Radiologist::hospital-dashboard-home.dart::HomePage1"
+
+class "patient_app::Radiologist::hospital-dashboard-home.dart::_HomePageState" {
+  -List<Series<Pollution*, String*>*>* _seriesData
+  -List<Series<Task*, String*>*>* _seriesPieData
+  -List<Series<Sales*, int*>*>* _seriesLineData
+  -dynamic _generateData()
+  +void initState()
+  +Widget* build()
+}
+
+class "patient_app::Radiologist::hospital-dashboard-home.dart::Pollution" {
+  +String* place
+  +int* year
+  +int* quantity
+}
+
+class "patient_app::Radiologist::hospital-dashboard-home.dart::Task" {
+  +String* task
+  +double* taskvalue
+  +Color* colorval
+}
+
+"patient_app::Radiologist::hospital-dashboard-home.dart::Task" o-- "dart::ui::Color"
+
+class "patient_app::Radiologist::hospital-dashboard-home.dart::Sales" {
+  +int* yearval
+  +int* salesval
+}
+
+class "patient_app::Radiologist::profile_screen.dart::ProfilePage" {
+  +User* user
+  +_ProfilePageState* createState()
+}
+
+"patient_app::Radiologist::profile_screen.dart::ProfilePage" o-- "firebase_auth::firebase_auth.dart::User"
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Radiologist::profile_screen.dart::ProfilePage"
+
+class "patient_app::Radiologist::profile_screen.dart::_ProfilePageState" {
+  -GlobalKey<ScaffoldState*>* _scaffoldKey
+  -PageController* _yourPostsPageController
+  -PageController* _favoritesPageController
+  -String* _name
+  -String* _specaility
+  -String* _experience
+  -dynamic _email
+  +void initState()
+  +Widget* build()
+}
+
+"patient_app::Radiologist::profile_screen.dart::_ProfilePageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<ScaffoldState>"
+"patient_app::Radiologist::profile_screen.dart::_ProfilePageState" o-- "flutter::src::widgets::page_view.dart::PageController"
+
+class "patient_app::Radiologist::Scan.dart::ScanPage" {
+  +_ScanPageState* createState()
+}
+
+"patient_app::Radiologist::bloc.navigation_bloc::navigation_bloc.dart::NavigationStates" <|-- "patient_app::Radiologist::Scan.dart::ScanPage"
+
+class "patient_app::Radiologist::Scan.dart::_ScanPageState" {
+  +String* tests
+  +UploadTask* task
+  +File* file
+  +String* qrCodeResult
+  +Future<dynamic>* selectFile()
+  +Future<dynamic>* uploadFile()
+  +Widget* buildUploadStatus()
+  +Widget* build()
+}
+
+"patient_app::Radiologist::Scan.dart::_ScanPageState" o-- "firebase_storage::firebase_storage.dart::UploadTask"
+"patient_app::Radiologist::Scan.dart::_ScanPageState" o-- "dart::io::File"
+
+class "patient_app::Radiologist::sidebar::menu_item.dart::MenuItem" {
+  +IconData* icon
+  +String* title
+  +Function* onTap
+  +Widget* build()
+}
+
+"patient_app::Radiologist::sidebar::menu_item.dart::MenuItem" o-- "flutter::src::widgets::icon_data.dart::IconData"
+
+class "patient_app::Radiologist::sidebar::sidebar.dart::SideBarRadiologist" {
+  +_SideBarState* createState()
+}
+
+class "patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState" {
+  -AnimationController* _animationController
+  +StreamController<bool*>* isSidebarOpenedStreamController
+  +Stream<bool*>* isSidebarOpenedStream
+  +StreamSink<bool*>* isSidebarOpenedSink
+  -Duration* _animationDuration
+  +void initState()
+  +void dispose()
+  +void onIconPressed()
+  +Widget* build()
+}
+
+"patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState" o-- "flutter::src::animation::animation_controller.dart::AnimationController"
+"patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamController<bool>"
+"patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::Stream<bool>"
+"patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState" o-- "dart::async::StreamSink<bool>"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "patient_app::Radiologist::sidebar::sidebar.dart::_SideBarState"
+
+class "patient_app::Radiologist::sidebar::sidebar.dart::CustomMenuClipper" {
+  +Path* getClip()
+  +bool* shouldReclip()
+}
+
+class "patient_app::Radiologist::sidebar::sidebar_layout.dart::SideBarLayoutRadiologist" {
+  +Widget* build()
+}
+
+class "patient_app::Radiologist::UploadFile.dart::FirebaseApi" {
+  {static} +UploadTask* uploadFile()
+  {static} +UploadTask* uploadBytes()
+}
+
+class "patient_app::Scan_generate_QR::Generate.dart::GeneratePage" {
+  +State<StatefulWidget*>* createState()
+}
+
+class "patient_app::Scan_generate_QR::Generate.dart::GeneratePageState" {
+  +String* qrData
+  +TextEditingController* qrdataFeed
+  +Widget* build()
+}
+
+"patient_app::Scan_generate_QR::Generate.dart::GeneratePageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+
+class "patient_app::Scan_generate_QR::Scan.dart::ScanPage" {
+  +_ScanPageState* createState()
+}
+
+class "patient_app::Scan_generate_QR::Scan.dart::_ScanPageState" {
+  +String* qrCodeResult
+  +Widget* build()
+}
+
+class "patient_app::SignUp.dart::SignUp" {
+  -FirebaseAuth* _auth
+  +_SignUpState* createState()
+}
+
+"patient_app::SignUp.dart::SignUp" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+
+class "patient_app::SignUp.dart::_SignUpState" {
+  +Item* selectedUser
+  -FirebaseAuth* _auth
+  -GlobalKey<FormState*>* _formKey
+  -String* _imageName
+  -String* _role
+  -String* _email
+  -String* _password
+  +dynamic checkAuthentication()
+  +void initState()
+  +dynamic signUp()
+  +dynamic showError()
+  +Widget* build()
+}
+
+"patient_app::SignUp.dart::_SignUpState" o-- "patient_app::SignUp.dart::Item"
+"patient_app::SignUp.dart::_SignUpState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"patient_app::SignUp.dart::_SignUpState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+
+class "patient_app::SignUp.dart::Item" {
+  +String* name
+  +Icon* icon
+}
+
+"patient_app::SignUp.dart::Item" o-- "flutter::src::widgets::icon.dart::Icon"
+
+class "patient_app::sizeConfig.dart::SizeConfig" {
+  {static} -MediaQueryData* _mediaQueryData
+  {static} +double* screenWidth
+  {static} +double* screenHeight
+  {static} +double* horizontalBloc
+  {static} +double* verticalBloc
+  {static} -double* _safeAreaHorizontal
+  {static} -double* _safeAreaVertical
+  {static} +double* safeBlockHorizontal
+  {static} +double* safeBlockVertical
+  +void init()
+}
+
+"patient_app::sizeConfig.dart::SizeConfig" o-- "flutter::src::widgets::media_query.dart::MediaQueryData"
+
+class "patient_app::Start.dart::Start" {
+  +_StartState* createState()
+}
+
+class "patient_app::Start.dart::_StartState" {
+  -FirebaseAuth* _auth
+  +Future<UserCredential*>* googleSignIn()
+  +dynamic navigateToLogin()
+  +dynamic navigateToRegister()
+  +Widget* build()
+}
+
+"patient_app::Start.dart::_StartState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+
+
+@enduml

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patient_app/Doctor/bloc.navigation_bloc/navigation_bloc.dart';
@@ -25,6 +26,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    _specaility = fetchData('speciality') as String;
+    _experience = fetchData('experience') as String;
+    _name = fetchData('username') as String;
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User user = auth.currentUser;
     var currentDoc = doctorsRef.doc(user.uid).get();
@@ -206,5 +210,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  fetchData(name){
+    String data;
+    doctorsRef.doc(FirebaseAuth.instance.currentUser.uid).get().then((value) =>
+      data = value.data()[name]
+    );
+    return data;
   }
 }

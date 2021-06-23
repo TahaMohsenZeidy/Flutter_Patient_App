@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,7 +12,7 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   bool isObscurePassword = true;
   Map label_vlaue = Map<String, String>();
-  String email = currentUser.email;
+  var currentUser = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +79,7 @@ class _EditProfileState extends State<EditProfile> {
               ),
               SizedBox(height: 30),
               buildTextField("Name", "Name", false),
-              buildTextField("Email", "$email", false),
+              buildTextField("Email", "${currentUser.email}", false),
               buildTextField("Password", "Password", true),
               buildTextField("Phone", "Phone", false),
               buildTextField("Speciality", "Speciality", false),
@@ -104,13 +105,14 @@ class _EditProfileState extends State<EditProfile> {
                   ElevatedButton(
                     onPressed: () {
                       doctorsRef.doc(currentUser.uid).set({
-                        "username": label_vlaue["name"],
-                        "email": label_vlaue["name"],
-                        "password": label_vlaue["pass"],
-                        "phone": label_vlaue["phone"],
-                        "experience": label_vlaue["exp"],
-                        "description": label_vlaue["desc"],
-                        "speciality": label_vlaue["spec"],
+                        "username": label_vlaue["Name"],
+                        "email": label_vlaue["Email"],
+                        "password": label_vlaue["Password"],
+                        "phone": label_vlaue["Phone"],
+                        "experience": label_vlaue["Experience"],
+                        "description": label_vlaue["Description"],
+                        "speciality": label_vlaue["Speciality"],
+                        "hospital": label_vlaue["Hospital"]
                       });
                       Fluttertoast.showToast(
                           msg: 'Profile Updated Successfully',
@@ -172,8 +174,6 @@ class _EditProfileState extends State<EditProfile> {
                   (existingValue) => value,
               ifAbsent: () => value,
             );
-            print("Current text value is : $labelText");
-            print(label_vlaue);
           }
         ),
     );
