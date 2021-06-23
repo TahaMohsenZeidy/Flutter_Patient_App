@@ -1,14 +1,25 @@
-# flutter_app
+# Flutter Patient App - Hospy 
+Technology has successfully invaded every aspect of our life.
+All areas of human activity have been influenced,
+one way or another, by technology. So,
+the same goes for the health sector.
+In fact, the latter has experienced its share of digital revolution in many developed economies,
+and the use of mobile application software is one of the latest trends in this industry,
+which is rapidly becoming an essential aspect of the delivery of medical services.
 
-A Flutter Application To Manage Transactions In A Hospital.
+## Installation
+Just clone the repository, run pubget on pubspec.yaml and you will be free to use this app
 
-## Getting Started
+## Usage
 
-__La technologie a envahi avec succès chaque aspect de notre vie.
- Tous les domaines de l'activité humaine ont été influencés,
- d'une manière ou d'une autre, par la technologie.
- Ainsi, il en va de même pour le secteur de santé.
- En réalité, ce dernier a connu sa part de révolution numérique au sein de nombreuses économies développées,
- et l'utilisation de logiciels d'application mobile est l'une des dernières tendances dans ce secteur,
- laquelle devient rapidement un aspect essentiel de la prestation de services médicaux.__ 
+__It is a mobile application that manages transactions made within a clinic, we could even say that it is a virtual clinic.__
+__This application is designed to be used by physician, patient, medical laboratory assistant, radiologist, and pharmacist.__
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
