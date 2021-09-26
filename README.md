@@ -15,8 +15,17 @@ Just clone the repository, run pubget on pubspec.yaml and you will be free to us
 __It is a mobile application that manages transactions made within a clinic, we could even say that it is a virtual clinic.__
 __This application is designed to be used by physician, patient, medical laboratory assistant, radiologist, and pharmacist.__
 
-![Alt text](../../images/wlecome.png)
-![Alt text](../../images/shema.png)
+## Screenshots
+
+![Alt text](images/shema.PNG)
+![Alt text](images/welcome.png)
+![Alt text](images/1.PNG)
+![Alt text](images/2.PNG)
+![Alt text](images/3.PNG)
+![Alt text](images/4.PNG)
+![Alt text](images/5.PNG)
+![Alt text](images/6.PNG)
+![Alt text](images/7.PNG)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
